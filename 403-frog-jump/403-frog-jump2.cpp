@@ -2,7 +2,6 @@ class Solution {
 public:
     bool canCross(vector<int>& stones) {
         queue<pair<int,int>> qq;
-        
         unordered_map<int,int> ck;
         for(int &i:stones) ck[i]=1;
         
