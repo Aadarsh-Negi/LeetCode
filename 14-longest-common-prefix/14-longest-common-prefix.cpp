@@ -8,9 +8,10 @@ public:
             bool ok=1;
             for(int j=0;j<strs.size();j++){
                 ok&=(strs[j][i]==strs[0][i]);
+                if(!ok) return ans;
             }
-            if(ok) ans+=strs[0][i];
-            else return ans;
+            ans+=strs[0][i];
+            // else return ans;
         }
         return ans;
         
