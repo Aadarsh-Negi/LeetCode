@@ -11,8 +11,6 @@ public:
                 c=mp[c-'0']+'0';
                 // cout<<c<<" ";
             }
-            
-            // while(s1.size() && s1.front()=='0')s1.erase(s1.begin());
         return (s1.size()==0?0:stoi(s1));
             
     }
@@ -28,7 +26,7 @@ public:
         
         for(int &i:nums) if(seen.count(i)==0) seen[i]=val(i,mapping);
         
-        sort(all(nums),[&](int &a,int &b){
+        sort(all(nums),[&](const  int &a,const int &b){
     
             int a1 =seen[a];
             int a2 = seen[b];
