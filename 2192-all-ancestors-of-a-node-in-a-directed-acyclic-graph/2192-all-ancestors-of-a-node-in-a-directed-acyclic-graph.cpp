@@ -1,38 +1,24 @@
 class Solution {
 public:
-    
-    void dfs(int u,int par,vector<int> gp[],vector<set<int>> &ans,vector<int> &vis){
-        if(u!=par){
-            ans[u].insert(par);
+    void dfs(int fix,int ind,vector<vector<int>> &graph,vector<int> &vis,vector<vector<int>> &ans){
+        vis[ind]=1;
+        for(int i=0;i<graph[ind].size();i++){
+            if(!vis[graph[ind][i]]){
+                ans[graph[ind][i]].push_back(fix);
+                dfs(fix,graph[ind][i],graph,vis,ans);
+            }
         }
-        vis[u]=1;
-        for(int i:gp[u]) if(vis[i]!=1) dfs(i,par,gp,ans,vis);
     }
-    
     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
-        vector<set<int>> ans(n);
-        
-        vector<int> gp[n+2];
-        for(auto it:edges){
-            gp[it[0]].push_back(it[1]);
-        }
-        
-        
+        map<int,vector<int>> m;
+        vector<vector<int>> ans(n);
+        vector<vector<int>> graph(n);
+        for(int i=0;i<edges.size();i++)
+            graph[edges[i][0]].push_back(edges[i][1]);            
         for(int i=0;i<n;i++){
             vector<int> vis(n,0);
-            dfs(i,i,gp,ans,vis);
+            dfs(i,i,graph,vis,ans);
         }
-        
-        vector<vector<int>> ans2;
-        
-        for(auto it:ans){
-            vector<int> temp;
-            
-            for(int i:it) temp.push_back(i);
-            ans2.push_back(temp);
-        }
-        // ans2.pop_back();
-        return ans2;
-        
+        return ans;
     }
 };
