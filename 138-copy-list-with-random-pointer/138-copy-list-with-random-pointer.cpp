@@ -21,69 +21,23 @@ public:
         
         map<Node*,Node*> seen;
         
-        Node* root = NULL;
-        Node * cur=NULL;
+        Node* root = new Node(10);
+        Node * cur=root;
         
         while(head){
             
+            if(seen.count(head)) cur->next = seen[head];
+            else cur->next = new Node(head->val),seen[head] = cur->next;
             
-                if(seen.count(head)){
-                    bool fl=0;
-                    if(root==NULL) root=cur = seen[head],fl=1;
-                    else cur->next = seen[head];
-                    
-                    if(fl){
-                        if(head->random && seen.count(head->random)){
-                            cur->random = seen[head->random];
-                        }else if(head->random){
-                            Node *temp = new Node(head->random->val);
-                            seen[head->random] = temp;
-                            cur->random = temp;
-                        } 
-                    }else{
-                        if(head->random && seen.count(head->random)){
-                            cur->next->random = seen[head->random];
-                        }else if(head->random){
-                            Node *temp = new Node(head->random->val);
-                            seen[head->random] = temp;
-                            cur->next->random = temp;
-                        }
-                        cur=cur->next;
-                    }
-                }else{
-                    
-                    bool fl=0;
-                    if(root==NULL) root= cur = new Node(head->val),fl=1;
-                    else cur->next = new Node(head->val);
-                    
-                    if(fl){
-                        seen[head]= cur;
-                        if(head->random && seen.count(head->random)){
-                            cur->random = seen[head->random];
-                        }else if(head->random){
-                            Node *temp = new Node(head->random->val);
-                            seen[head->random] = temp;
-                            cur->random = temp;
-                        } 
-                    }else{
-                        seen[head]= cur->next;
-                        if(head->random && seen.count(head->random)){
-                            cur->next->random = seen[head->random];
-                        }else if(head->random){
-                            Node *temp = new Node(head->random->val);
-                            seen[head->random] = temp;
-                            cur->next->random = temp;
-                        }
-                        cur=cur->next;
-                    }
-                    
-                    
-                    
-                }
+            if(head->random && seen.count(head->random)) cur->next->random = seen[head->random];
+            else if(head->random) cur->next->random = new Node(head->random->val),seen[head->random] = cur->next->random;;
+            
+            
+            cur=cur->next;
             head=head->next;
             
         }
-        return root;
+        return root->next;
         
         
         
