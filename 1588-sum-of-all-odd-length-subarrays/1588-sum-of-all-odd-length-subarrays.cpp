@@ -4,9 +4,10 @@ public:
         int n = arr.size();
         int ans=0;
         for(int i=0;i<n;i++){
-            for(int j=i;j<n;j+=2){
-                for(int k=i;k<=j;k++)
-                    ans+=arr[k];
+            int temp=0;
+            for(int j=i;j<n;j++){
+                temp+=arr[j];
+                if((j-i+1)&1) ans+=temp;
             }
         }
         return ans;
