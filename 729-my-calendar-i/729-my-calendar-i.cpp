@@ -11,7 +11,7 @@ public:
             if(it.first<=start && it.second>=start) return 0;
             if(it.first<=end and it.second>=end) return 0;
             if(it.first<=end and it.first>=start) return 0;
-            if(it.first>=start and it.second<=end) return 0;
+            if(it.second>=start and it.second<=end) return 0;
         }
         ar.push_back({start,end});
         return 1;
