@@ -7,8 +7,7 @@ public:
         vector<vector<int>> ans = bb;
         
         vector<int> dir_x = {-1,1,-1,1,0,0,1,-1};
-        vector<int> dir_y = {-1,1,1,-1,1,-1,0,0};
-        
+        vector<int> dir_y = {-1,1,1,-1,1,-1,0,0};    
         
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
