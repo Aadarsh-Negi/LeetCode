@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maximumTop(vector<int>& nums, int k) {
-      if(nums.size()==1 && (k&1)) return -1;
+        if(nums.size()==1 && (k&1)) return -1;
         if(k==1)  return nums[1];
         
         if(k==0) return nums[0];
