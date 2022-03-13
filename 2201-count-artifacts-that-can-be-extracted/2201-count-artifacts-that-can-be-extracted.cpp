@@ -37,10 +37,7 @@ public:
         if(i>n || j>m) return 1;
         
         if(cnt[{i,j}]==0) return 0;
-        
-        cout<<i<<" "<<j<<"\n";
-        
-        return ok(i+1,j,n,m) && ok(i,j+1,n,m) && ok(i+1,j+1,n,m);
+          return ok(i+1,j,n,m) && ok(i,j+1,n,m) && ok(i+1,j+1,n,m);
         
         
     }
@@ -56,7 +53,6 @@ public:
             int a = ar[i][2];
             int b = ar[i][3];
             if(ok(x,y,a,b)) ans++;
-            cout<<"\n";
         }
         
      return ans;
