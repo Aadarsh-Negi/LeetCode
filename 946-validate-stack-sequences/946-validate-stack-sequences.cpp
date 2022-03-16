@@ -1,15 +1,31 @@
 class Solution {
 public:
-    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
-        int last=0;
-        int i=0;
+    bool validateStackSequences(vector<int>& p, vector<int>& tar) {
+        int n = p.size();
         
-        while(i<pushed.size() && last<popped.size()){
-          if(i>=0 && popped[last]==pushed[i]) pushed.erase(pushed.begin()+i),i=max(0,i-1),last++;
-          else i++;
-            // for(int i:pushed) cout<<i<<" ";cout<<"\n";
+        int i=0;
+        int j=0;
+        
+        
+        
+        while(i<n && j<n){
             
+            if(i>=0 && tar[j]==p[i]){
+                p[i]=-1;
+                j++;
+                while(i>=0 && p[i]==-1) i--;
+                
+            
+            }else i++;
+
         }
-        return last==popped.size();
+        
+        return j==tar.size();
+        
+        
+        
+        
+        
+        
     }
 };
