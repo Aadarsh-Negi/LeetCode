@@ -10,7 +10,7 @@ class Solution
 	map<pair<int,int>,set<string>> done;
 	set<string> solve(int i,int j,string &s,string &t,vector<vector<int>>&dp){
 	    
-	        if(done[{i,j}].size()) return done[{i,j}];
+	        if(done.count({i,j})) return done[{i,j}];
 	        set<string> cur;
 	        
 	        if(i<=0 || j<=0){
