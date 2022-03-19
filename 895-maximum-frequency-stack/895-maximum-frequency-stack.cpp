@@ -17,15 +17,12 @@ public:
     int ind;
     FreqStack() {
         ind=1;
-     
     }
     
     void push(int val) {
         cnt[val]++;
         st.insert(trp(cnt[val],ind,val));
         ind++;
-        // for(trp i:st) cout<<i.cnt<<" "<<i.last_index<<" "<<i.val<<"\n";
-        // cout<<"\n";
     }
     
     int pop() {
@@ -34,11 +31,7 @@ public:
         cnt[vv]--;
         
         st.erase(st.begin());
-        
-//         if(fl) return 0;
-//         fl=1;
-//         for(trp i:st) cout<<i.cnt<<" "<<i.last_index<<" "<<i.val<<"\n";
-        
+
         return vv;
     }
 };
