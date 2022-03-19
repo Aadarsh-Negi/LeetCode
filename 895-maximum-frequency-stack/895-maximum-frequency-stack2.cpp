@@ -1,7 +1,6 @@
 class FreqStack {
 public:
     unordered_map<int,int> cnt;
-    
     struct trp{
         int cnt;
         int last_index;
