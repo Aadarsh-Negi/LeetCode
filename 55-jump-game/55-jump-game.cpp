@@ -7,7 +7,7 @@ public:
         if(dp[i]!=-1) return dp[i];
         
         for(int j=nums[i];j>=1;j--){
-            dp[i] = solve(i+j,nums);
+           dp[i] = solve(i+j,nums);
             if(dp[i]==1) return dp[i];
         }
         return 0;
