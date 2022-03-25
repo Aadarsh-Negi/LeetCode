@@ -25,8 +25,7 @@ public:
         cc=costs;
         int a = costs.size()/2;
         int b = a;
-        
-        
+    
         
         return solve(0,a,b);
         
