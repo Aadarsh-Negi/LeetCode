@@ -16,7 +16,6 @@ public:
             for(int i:it.second){
                 ans.push_back(i);
                 k--;
-                
                 if(!k) return ans;
             }
             
