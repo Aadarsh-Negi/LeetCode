@@ -11,10 +11,7 @@ public:
             ar.push_back({o1,ind});
             ind++;
         }
-    sort(ar.begin(),ar.end(),[&](pair<int,int> &a,pair<int,int> &b){
-        if(a.first == b.first) return a.second<b.second;
-        return a.first<b.first;
-    });
+    sort(ar.begin(),ar.end());
     vector<int> ans;
     for(int i=0;i<k;i++) ans.push_back(ar[i].second);
     return ans;
