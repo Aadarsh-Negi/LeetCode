@@ -8,7 +8,6 @@ public:
         
         for(int &i:nums) r+=i,l=max(l,i);
     
-        
         function<bool(int)> ok = [&](int x){
             int c=1;
             int ss=0;
