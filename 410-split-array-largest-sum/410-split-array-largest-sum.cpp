@@ -1,11 +1,13 @@
 class Solution {
 public:
-    int splitArray(vector<int>& nums, int m) {
-        int sum=0; int n=nums.size();
-        for(int i:nums) sum+=i;
-        int l=*max_element(nums.begin(),nums.end());
-        int r=sum;
-        int ans=sum;
+    int splitArray(vector<int>& nums, int m) { 
+        int n=nums.size();
+        int l=0;
+        int r=0;
+        int ans=-1;
+        
+        for(int &i:nums) r+=i,l=max(l,i);
+    
         
         function<bool(int)> ok = [&](int x){
             int c=1;
