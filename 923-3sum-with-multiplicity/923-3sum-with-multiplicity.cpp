@@ -10,8 +10,8 @@ public:
             
             for(int j=i+1;j<arr.size();j++){
                if(tt-arr[j]<0) continue;
-                ans= (ans%mod + cnt[tt-arr[j]]%mod)%mod;
-                // ans%=mod;
+                ans+=cnt[tt-arr[j]];
+                ans%=mod;
             }
             
         }
