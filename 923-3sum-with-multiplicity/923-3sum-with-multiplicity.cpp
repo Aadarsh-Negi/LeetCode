@@ -1,7 +1,7 @@
 class Solution {
 public:
     int threeSumMulti(vector<int>& arr, int tar) {
-        long long ans=0;
+        int ans=0;
         const int mod = 1e9 + 7;
         int cnt[305]={0};
         cnt[arr[0]]++;
