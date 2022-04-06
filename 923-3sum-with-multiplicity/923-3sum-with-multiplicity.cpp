@@ -5,7 +5,7 @@ public:
         const int mod = 1e9 + 7;
         for(int i=1;i<arr.size();i++){
             int tt = tar - arr[i];
-            int cnt[1005]={0};
+            int cnt[305]={0};
             for(int j=i-1;j>=0;j--) cnt[arr[j]]++;
             
             for(int j=i+1;j<arr.size();j++){
