@@ -37,7 +37,7 @@ public:
         }
         solve(left-1,right,exp);
         solve(left,right+1,exp);
-        solve(left-1,right+1,exp);  
+        
     }
         
     
