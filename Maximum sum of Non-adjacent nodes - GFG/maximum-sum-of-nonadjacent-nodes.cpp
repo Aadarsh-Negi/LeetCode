@@ -118,7 +118,7 @@ class Solution{
       }
       
       s2 = dfs(root->right);
-      s2+=dfs(root->left);
+      s2 += dfs(root->left);
       
       return dp[root] = max(s1+root->data,s2);
   }
