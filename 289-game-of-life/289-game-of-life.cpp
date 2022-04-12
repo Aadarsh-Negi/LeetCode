@@ -1,38 +1,42 @@
 class Solution {
 public:
-    void gameOfLife(vector<vector<int>>& bb) {
-        int n = bb.size();
-        int m = bb[0].size();
-        
-        // vector<vector<int>> ans = bb;
-        
-        vector<int> dir_x = {-1,1,-1,1,0,0,1,-1};
-        vector<int> dir_y = {-1,1,1,-1,1,-1,0,0};
-        
-        
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                int liv=0;
-                for(int k=0;k<8;k++){
-                    int cx = dir_x[k] + i;
-                    int cy = dir_y[k] + j;
-                    if(cy<0 || cx<0 || cx>=n || cy>=m) continue;
-                    if(bb[cx][cy]==1 || bb[cx][cy]==2) liv++;
-                }
-                if(bb[i][j]==1 || bb[i][j]==2){
-                    if(liv<2) bb[i][j]=2;
-                    else if(liv>3) bb[i][j]=2;
-                }else{
-                    if(liv==3) bb[i][j]=3;
-                }
-            }
+int solve(vector<vector<int>>& a, int i ,int j,int n ,int m){
+      int dx[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
+      int dy[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
+       int cnt = 0;
+      for(int k = 0; k<8; k++) {
+         int x = i+dx[k];
+         int y = j+dy[k];
+          if(x<0 or x>=n) continue;
+          if(y<0 or y>=m) continue;
+          cnt+=a[x][y];
+      }
+      return cnt;
+  }
+    void gameOfLife(vector<vector<int>>& a) {
+        int n = a.size();
+        int m = a[0].size();
+        vector<vector<int>>ans(n,vector<int>(m));
+        for(int i = 0; i<n; i++) {
+           for(int j = 0; j<m; j++) {
+             
+             int live = solve(a,i,j,n,m);
+             
+             if(  a[i][j] == 1 and live < 2) {
+               ans[i][j] = 0;
+             }
+              else if(a[i][j] == 1 and live == 2 or live == 3){
+                ans[i][j] = 1;
+              }
+              else if(a[i][j] == 1 and live > 3){
+                ans[i][j] = 0;
+              }
+              else if(a[i][j] == 0 and live == 3){
+                ans[i][j] = 1;
+              }
+           }
         }
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(bb[i][j]==2) bb[i][j]=0;
-                else if(bb[i][j]==3) bb[i][j]=1;
-            }
-        }
-        
+       a = ans;
+      return;
     }
 };
