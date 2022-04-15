@@ -15,11 +15,9 @@ public:
                 int cur = qq.front().first;
                 int back = qq.front().second;
                 qq.pop();
-                
-                if(cur==x) return ans;
-                if(vis[cur] || cur>9999) continue;
+                if(vis[cur] || cur>9999 || cur<-9999) continue;
                 vis[cur]=1;
-                
+                if(cur==x) return ans;
                 if(fr.count(cur-b)==0 && back==0 && cur-b>=0) qq.push({cur-b,1});
                 if(fr.count(cur+a)==0) qq.push({cur+a,0});      
                 
