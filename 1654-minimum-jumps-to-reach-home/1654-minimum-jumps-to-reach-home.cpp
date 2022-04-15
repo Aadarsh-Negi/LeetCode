@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
-        int vis[7777]={0};
+        int vis[6666]={0};
         queue<pair<int,int>> qq;
         
         for(int &i:forbidden) vis[i]=1;
@@ -15,11 +15,11 @@ public:
                 int cur = qq.front().first;
                 int back = qq.front().second;
                 qq.pop();
-                if(vis[cur] || cur>=7777) continue;
+                if(vis[cur] || cur>=6666) continue;
                 vis[cur]=1;
                 if(cur==x) return ans;
                 if(cur-b>=0 && vis[cur-b]==0 && back==0) qq.push({cur-b,1});
-                if(cur+a<7777 && vis[cur+a]==0) qq.push({cur+a,0});      
+                if(cur+a<6666 && vis[cur+a]==0) qq.push({cur+a,0});      
                 
             }
             ans++;
