@@ -1,9 +1,9 @@
 class Solution {
 public:
     int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
-        unordered_map<int,int> vis;
+        int vis[10000]={0};
         queue<pair<int,int>> qq;
-        unordered_map<int,int> fr;
+        int fr[10000] = {0};
         for(int &i:forbidden) fr[i]=1;
         qq.push({0,0});
         int ans=0;
@@ -18,8 +18,8 @@ public:
                 if(vis[cur] || cur>9999) continue;
                 vis[cur]=1;
                 if(cur==x) return ans;
-                if(fr[cur-b]==0 && back==0 && cur-b>=0) qq.push({cur-b,1});
-                if(fr[cur+a]==0) qq.push({cur+a,0});      
+                if(cur-b>=0 && fr[cur-b]==0 && back==0) qq.push({cur-b,1});
+                if(cur+a<10000 && fr[cur+a]==0) qq.push({cur+a,0});      
                 
             }
             ans++;
