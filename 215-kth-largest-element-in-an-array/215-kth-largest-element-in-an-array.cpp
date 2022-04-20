@@ -1,30 +1,30 @@
 class Solution {
 public:
-    int k;
-    int partition(vector<int> &ar,int l,int r){
-    int pivot = ar[r];
-    int i = l-1;
-    
-    for(int j=l;j<=r-1;j++){
-        if (ar[j] < pivot)
-        {
-            i++; 
-            swap(ar[i],ar[j]);
+    int qk(vector<int> &ar,int l,int h,int k){
+        if(l<=h){
+            int mid = part(ar,l,h);
+            if(mid==ar.size()-k) return ar[mid];
+             if(mid<ar.size()-k){
+                return qk(ar,mid+1,h,k);
+            }
+            return qk(ar,l,mid-1,k);
         }
+        return -1;
     }
-        swap(ar[i+1],ar[r]);
-    return i+1;
-}
-
-
-    int findKthLargest(vector<int> nums, int k) {
-      int start = 0, end = nums.size() - 1, index = nums.size() - k;
-        while (start < end) {
-            int pivot = partition(nums, start, end);
-            if (pivot < index) start = pivot + 1; 
-            else if (pivot > index) end = pivot - 1;
-            else return nums[pivot];
+    int part(vector<int> &ar,int l,int h){
+        int last = l-1;
+        int pt = ar[h];
+        for(int j=l;j<h;j++){
+            if(ar[j]<pt){
+                last++;
+                swap(ar[j],ar[last]);
+            }
         }
-        return nums[start];
+        swap(ar[last+1],ar[h]);
+        return last+1;
+        
+    }
+    int findKthLargest(vector<int>& nums, int k) {
+        return qk(nums,0,nums.size()-1,k);
     }
 };
