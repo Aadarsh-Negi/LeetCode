@@ -2,27 +2,27 @@ class MyHashSet {
 public:
     vector<vector<int>> ar;
     MyHashSet() {
-        ar.resize(997);
+        ar.resize(773);
     }
     
     void add(int key) {
         if(contains(key)) return;
         
-        ar[key%997].push_back(key);
+        ar[key%773].push_back(key);
     }
     
     void remove(int key) {
        int j=0;
-        for(int i:ar[key%997]){
+        for(int i:ar[key%773]){
             if(i==key){  
-               ar[key%997].erase(ar[key%997].begin()+j);
+               ar[key%773].erase(ar[key%773].begin()+j);
             }
             j++;
         }
     }
     
     bool contains(int key) {
-        for(int i:ar[key%997]){
+        for(int i:ar[key%773]){
             if(i==key){  
                 return 1;
             }
