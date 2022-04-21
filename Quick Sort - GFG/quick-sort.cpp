@@ -20,28 +20,29 @@ class Solution
     void quickSort(int arr[], int low, int high)
     {
         if(low>high) return;
-        // if(low<high){
+        
+        
             int mid = partition(arr,low,high);
             quickSort(arr,low,mid-1);
             quickSort(arr,mid+1,high);
-        // }
             
     }
     
     public:
     int partition (int ar[], int low, int high)
     {
-        int last = low;
+        int last = low-1;
         int pivot = ar[high];
         int j=low;
         for(;j<high;j++){
             if(ar[j]<pivot){
-                swap(ar[last],ar[j]);
                 last++;
+                swap(ar[last],ar[j]);
+                // last++*/
             }
         }
-        swap(ar[last],ar[high]);
-        return last;
+        swap(ar[last+1],ar[high]);
+        return last+1;
        // Your code here
     }
 };
