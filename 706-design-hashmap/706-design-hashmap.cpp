@@ -2,7 +2,7 @@ class MyHashMap {
 public:
     vector<vector<pair<int,int>>> ar;
     MyHashMap() {
-        ar.resize(1003);
+        ar.resize(997);
     }
     
     void put(int key, int value) {
