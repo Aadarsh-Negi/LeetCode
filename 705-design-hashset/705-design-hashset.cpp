@@ -16,6 +16,7 @@ public:
         for(int i:ar[key%997]){
             if(i==key){  
                ar[key%997].erase(ar[key%997].begin()+j);
+                return;
             }
             j++;
         }
