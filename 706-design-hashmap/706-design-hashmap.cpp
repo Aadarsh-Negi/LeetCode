@@ -21,9 +21,9 @@ public:
     }
     
     int get(int key) {
-        for(pair<int,int> &aa:ar[key%997]){
-            int x = aa.first;
-            int y = aa.second;
+        for(auto [x,y]:ar[key%997]){
+            // int x = aa.first;
+            // int y = aa.second;
             if(x==key) return y;
         }
         return -1;
