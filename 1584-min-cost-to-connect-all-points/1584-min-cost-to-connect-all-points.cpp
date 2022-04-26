@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> par;
-    // vector<int> par2;
     int find(int x){
         if(par[x]==-1) return x;
         return par[x] = find(par[x]);
@@ -10,22 +9,9 @@ public:
     void comb(int x,int y){
         par[x] = y;
     }
-//     int find(int x){
-//         if(par2[x]==-1) return x;
-//         return par2[x] = find(par2[x]);
-//     }
-    
-//     void comb(int x,int y){
-//         par2[x] = y;
-//     }
-    
     int minCostConnectPoints(vector<vector<int>>& p) {
         par.resize(p.size());
-        // par2.resize(1e6+1);
-        // fill(par2.begin(),par2.end(),-1);
         fill(par.begin(),par.end(),-1);
-        
-        
         vector<pair<int,pair<int,int>>> mx;
         for(int i=0;i<p.size();i++){
             for(int j=i+1;j<p.size();j++){
