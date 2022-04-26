@@ -7,7 +7,9 @@ public:
     }
     
     void comb(int x,int y){
-        par[x] = y;
+       x= find(x);
+        y=find(y);
+        par[x]=y;
     }
     int minCostConnectPoints(vector<vector<int>>& p) {
         par.resize(p.size());
