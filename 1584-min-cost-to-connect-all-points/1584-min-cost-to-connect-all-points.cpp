@@ -20,7 +20,7 @@ public:
 //     }
     
     int minCostConnectPoints(vector<vector<int>>& p) {
-        par.resize(1e6+1);
+        par.resize(p.size());
         // par2.resize(1e6+1);
         // fill(par2.begin(),par2.end(),-1);
         fill(par.begin(),par.end(),-1);
