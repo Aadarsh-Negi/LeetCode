@@ -1,19 +1,18 @@
+int dir_x[] = {1,-1,0,0};
+int dir_y[] = {0,0,1,-1};
 class Solution {
 public:
-    bool ok(int &x,int i,int j,vector<vector<int>> &vis,vector<vector<int>> &ht){
+    bool ok(int &ans,int i,int j,vector<vector<int>> &vis,vector<vector<int>> &ht){
         vis[i][j]=1;
         if(i==ht.size()-1 && ht[0].size()-1 == j) return 1;
-        if(i+1<ht.size()  && !vis[i+1][j] && abs(ht[i][j] - ht[i+1][j])<=x){
-            if(ok(x,i+1,j,vis,ht)) return 1;
-        }
-        if(j+1<ht[0].size()  && !vis[i][j+1] && abs(ht[i][j] - ht[i][j+1])<=x){
-            if(ok(x,i,j+1,vis,ht)) return 1;
-        }
-        if(i-1>=0 && !vis[i-1][j] && abs(ht[i][j] - ht[i-1][j])<=x){
-            if(ok(x,i-1,j,vis,ht)) return 1;
-        }
-        if(j-1>=0 && !vis[i][j-1] &&  abs(ht[i][j] - ht[i][j-1])<=x){
-            if(ok(x,i,j-1,vis,ht)) return 1;
+        
+        for(int k=0;k<4;k++){
+            int x = dir_x[k] + i;
+            int y = dir_y[k] + j;
+            if(y<0 || x<0 || x>=ht.size() || y>=ht[0].size() || vis[x][y] || abs(ht[i][j] - ht[x][y])>ans) continue;
+            
+            if(ok(ans,x,y,vis,ht)) return 1;
+            
         }
         
         return 0;
