@@ -21,19 +21,18 @@ public:
     }
     
     int minimumEffortPath(vector<vector<int>>& ht) {
-        int ans=0;
+        
         int l = 0;
         int r = 1e6+3;  
-        while(l<=r){
+        while(l<r){
             
             int mid = l + (r-l)/2;
             vector<vector<int>> vis(ht.size(),vector<int>(ht[0].size(),0));
             if(ok(mid,0,0,vis,ht)){
-                ans=mid;
-                r = mid-1;
+                r = mid;
             }else l = mid+1;    
         }
-        return ans;
+        return r;
         
     }
 };
