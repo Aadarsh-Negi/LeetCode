@@ -1,22 +1,23 @@
 class Solution {
 public:
     int uniqueLetterString(string s) {
-        map<char,vector<int>> ind;
+        vector<vector<int>> ind(26);
         
         int n = s.size();
         for(int i=0;i<s.size();i++){
-            char c = s[i];
+            int c = s[i] - 'A';
             
             if(ind[c].size()==0) ind[c].push_back(0);
             
             ind[c].push_back(i+1);
         }
         int ans=0;
-        for(auto &it:ind){
-            it.second.push_back(n+1);
-            for(int i=1;i<it.second.size()-1;i++){
-                int prev = it.second[i] - it.second[i-1];
-                prev *= it.second[i+1] - it.second[i];
+        for(int i=0;i<26;i++){
+            
+            ind[i].push_back(n+1);
+            for(int j=1;j<ind[i].size()-1;j++){
+                int prev = ind[i][j] - ind[i][j-1];
+                prev *= ind[i][j+1] - ind[i][j];
                 ans+=prev;
             }
         } 
