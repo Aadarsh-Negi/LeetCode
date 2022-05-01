@@ -8,13 +8,14 @@ public:
             char c = s[i];
             if(ind[c].size()==0){
                 ind[c].push_back(0);
-                ind[c].push_back(n+1);
+                // ind[c].push_back(n+1);
             }
             ind[c].push_back(i+1);
         }
         int ans=0;
         for(auto &it:ind){
-            sort(it.second.begin(),it.second.end());
+            // sort(it.second.begin(),it.second.end());
+            it.second.push_back(n+1);
             
             for(int i=1;i<it.second.size()-1;i++){
                 int prev = it.second[i] - it.second[i-1];
