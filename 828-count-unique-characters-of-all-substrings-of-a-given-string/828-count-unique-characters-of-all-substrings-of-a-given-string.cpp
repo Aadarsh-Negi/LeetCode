@@ -13,7 +13,7 @@ public:
         }
         int ans=0;
         for(int i=0;i<26;i++){
-            
+            if(ind[i].size()==0) continue;
             ind[i].push_back(n+1);
             for(int j=1;j<ind[i].size()-1;j++){
                 int prev = ind[i][j] - ind[i][j-1];
