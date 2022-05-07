@@ -10,9 +10,9 @@ public:
         // for(int i:mn2) cout<<i<<" ";cout<<"\n";
         for(int i=n-1;i>=0;i--){
             if(nums[i]>mn2[i]){
-                cout<<nums[i]<<" <Can\n";
+                // cout<<nums[i]<<" <Can\n";
                 while(ck.size() && ck.top()<=mn2[i]) ck.pop();
-                if(ck.size() && ck.top()<nums[i]) {cout<<nums[i]<<" ans\n";return 1;}    
+                if(ck.size() && ck.top()<nums[i]) {return 1;}    
                 ck.push(nums[i]);
             }
             
