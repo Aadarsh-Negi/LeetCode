@@ -1,26 +1,36 @@
 class Solution {
 public:
-    map<int,int> col;
     
-    bool dfs(int i,int c,vector<vector<int>> &gg){
-        col[i]  = c;
-        
+    
+    
+    
+    bool isBipartite(vector<vector<int>>&g) {
+        int n = g.size();
+        vector<int> col(n+3,-1);
+        auto bfs = [&](int src){
+          queue<int> qq;
+          qq.push(src);
+            
+          while(qq.size()){
+              
+              int cur = qq.front(); qq.pop();
+              if(col[cur]==-1) col[cur]=1;
+              
+              for(int i:g[cur]){
+                  if(col[i]==-1){
+                      col[i] = col[cur]^1;
+                      qq.push(i);
+                  }else if(col[cur]==col[i]) return 0;
+              }
+          }
+            return 1;
+        };
         
         bool ok=1;
-        for(int x:gg[i]){
-            if(col.count(x)==0){
-                {ok&=dfs(x,c^1,gg);}    
-            }else if(col[x] == col[i]) return 0;
-        }
-        return ok;
-    }
-
-    bool isBipartite(vector<vector<int>>& graph) {
-         
-        bool ok=1;
-        for(int i=0;i<graph.size();i++) {if(col.count(i)==0) ok&=dfs(i,0,graph);}
+        for(int i=0;i<n;i++) if(col[i]==-1) ok&=bfs(i);
         
         return ok;
+        
         
     }
 };
