@@ -4,7 +4,7 @@ public:
     void solve(int k,int n,int val,vector<int> &temp){
         
         if(n==0 && k==0){
-            if(temp.size()) {ans.push_back(temp);}
+            ans.push_back(temp);
             return;
         }
         if(n<=0 || k<=0) return;
