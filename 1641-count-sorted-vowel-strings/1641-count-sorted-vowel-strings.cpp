@@ -1,4 +1,4 @@
-int dp[100][100];
+int dp[55][6];
 class Solution {
 public:
     int solve(int n,int i){
