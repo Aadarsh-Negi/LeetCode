@@ -1,26 +1,18 @@
 class Solution {
 public:
-    void solve(vector<int>&a , int i , vector<int>&v ,set<vector<int>>&s) {
-      if(i == a.size()){
-        if(v.size() > 1)
-          s.insert(v);
-          return;
-      }
-      
-        // solve(a , i +1 , v, s);
-      if(v.size()==0 or v[v.size()-1] <= a[i]) {
-        v.push_back(a[i]);
-        solve(a, i+1 , v, s);
-        v.pop_back();
-      }
-         solve(a , i +1 , v, s);
-    }
-    vector<vector<int>> findSubsequences(vector<int>&a) {
-      vector<vector<int>>ans;
-      set<vector<int>>s;
-      vector<int>v;
-      solve(a, 0 , v ,s);
-      for(auto j : s) ans.push_back(j);
-      return ans;
+   
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        
+        vector<vector<int>> ans;
+        
+        for(int i=1;i<(1<<nums.size());i++){
+            vector<int> temp;
+            for(int j=0;j<nums.size();j++)
+                if((1<<j)&i) temp.push_back(nums[j]);           
+            if(temp.size()>1 && is_sorted(temp.begin(),temp.end())) ans.push_back(temp);
+        }
+        sort(ans.begin(),ans.end());
+        ans.erase(unique(ans.begin(),ans.end()),ans.end());
+        return ans;
     }
 };
