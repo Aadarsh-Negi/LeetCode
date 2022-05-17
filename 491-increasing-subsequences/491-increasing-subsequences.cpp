@@ -40,22 +40,27 @@ public:
         
         vector<vector<int>> ans;
         Trie *tx = new Trie();
+        
         for(int i=1;i<(1<<nums.size());i++){
+            
             vector<int> temp;
+            
             for(int j=0;j<nums.size();j++)
-                if((1<<j)&i) temp.push_back(nums[j]);           
+                if((1<<j)&i) 
+                    temp.push_back(nums[j]);           
             if(temp.size()>1 && is_sorted(temp.begin(),temp.end()))
                 tx->insert(temp);  
         }
         
         for(int i=1;i<(1<<nums.size());i++){
             vector<int> temp;
+            
             for(int j=0;j<nums.size();j++)
-                if((1<<j)&i) temp.push_back(nums[j]);           
+                if((1<<j)&i) 
+                    temp.push_back(nums[j]);           
+            
             if(tx->search(temp)) ans.push_back(temp);
         }
-        
-        
         
         return ans;
     }
