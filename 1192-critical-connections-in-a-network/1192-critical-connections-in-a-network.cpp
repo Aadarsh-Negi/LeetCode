@@ -32,19 +32,19 @@ function<void(int,int)> dfs = [&](int v, int p = -1) {
     }
 };
 
-auto find_bridges = [&]() {
+// auto find_bridges = [&]() {
     timer = 0;
     visited.assign(n, false);
     tin.assign(n, -1);
     low.assign(n, -1);
-    for (int i = 0; i < n; ++i) {
-        if (!visited[i])
-            dfs(i,-1);
-    }
-};
+    // for (int i = 0; i < n; ++i) {
+    //     if (!visited[i])
+            dfs(0,-1);
+//     }
+// };
         
         
-     find_bridges();   
+     // find_bridges();   
         return ans;
     }
 };
