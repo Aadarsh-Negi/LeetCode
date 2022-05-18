@@ -1,50 +1,34 @@
 class Solution {
 public:
-    
-    
-    vector<vector<int>> criticalConnections(int n, vector<vector<int>>& gp) {
-        vector<vector<int>> adj(n);
-        
-        for(vector<int> &c:gp){
-            int u = c[0];
-            int v = c[1];
+    vector<vector<int>> criticalConnections(int n, vector<vector<int>>& cc) {
+          vector<vector<int>> adj(n);
+        for(vector<int> &it:cc){
+            int u = it[0];
+            int v = it[1];
             adj[u].push_back(v);
             adj[v].push_back(u);
         }
-vector<vector<int>> ans;
-vector<bool> visited(n,false);
-vector<int> tin(n,-1), low(n,-1);
-int timer=0;
-
-function<void(int,int)> dfs = [&](int v, int p = -1) {
-    visited[v] = true;
-    tin[v] = low[v] = timer++;
-    for (int to : adj[v]) {
-        if (to == p) continue;
-        if (visited[to]) {
-            low[v] = min(low[v], tin[to]);
-        } else {
-            dfs(to, v);
-            low[v] = min(low[v], low[to]);
-            if (low[to] > tin[v])
-                ans.push_back({v, to});
-        }
-    }
-};
-
-// auto find_bridges = [&]() {
-    // timer = 0;
-    // visited.assign(n, false);
-    // tin.assign(n, -1);
-    // low.assign(n, -1);
-    // for (int i = 0; i < n; ++i) {
-    //     if (!visited[i])
-            dfs(0,-1);
-//     }
-// };
-        
-        
-     // find_bridges();   
+        vector<int> dis(n,-1);
+        vector<int> low(n,-1);
+        int timer = 0;
+        vector<vector<int>> ans;
+        function<void(int,int)> dfs = [&](int u,int p){
+            dis[u] = low[u] = timer++;
+            
+            for(int j:adj[u]){
+                if(j==p) continue;
+                if(dis[j]==-1){
+                    dfs(j,u);
+                    low[u] = min(low[u],low[j]);
+                    
+                    if(low[j]> dis[u]) ans.push_back({u,j});
+                    
+                }else{
+                   low[u] = min(low[u],dis[j]);
+                }
+            }
+        };
+        dfs(0,-1);
         return ans;
     }
 };
