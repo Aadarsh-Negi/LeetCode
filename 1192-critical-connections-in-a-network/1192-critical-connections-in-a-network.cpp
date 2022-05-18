@@ -12,9 +12,9 @@ public:
             adj[v].push_back(u);
         }
 vector<vector<int>> ans;
-vector<bool> visited;
-vector<int> tin, low;
-int timer;
+vector<bool> visited(n,false);
+vector<int> tin(n,-1), low(n,-1);
+int timer=0;
 
 function<void(int,int)> dfs = [&](int v, int p = -1) {
     visited[v] = true;
@@ -33,10 +33,10 @@ function<void(int,int)> dfs = [&](int v, int p = -1) {
 };
 
 // auto find_bridges = [&]() {
-    timer = 0;
-    visited.assign(n, false);
-    tin.assign(n, -1);
-    low.assign(n, -1);
+    // timer = 0;
+    // visited.assign(n, false);
+    // tin.assign(n, -1);
+    // low.assign(n, -1);
     // for (int i = 0; i < n; ++i) {
     //     if (!visited[i])
             dfs(0,-1);
