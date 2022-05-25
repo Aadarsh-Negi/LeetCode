@@ -1,12 +1,13 @@
 const int mod = 1e9 + 7;
+int dp[2000][45];
 class Solution {
 public:
-    map<pair<int,int>,int> dp;
+    // map<pair<int,int>,int> dp;
     int n;
     int solve(int h,int mask,vector<vector<int>> &hx){
         if(mask==(1<<n)-1) return 1;
         if(h>40) return 0;
-        if(dp.count({mask,h})) return dp[{mask,h}];
+        if(dp[mask][h]!=-1) return dp[mask][h];
         
         int temp = solve(h+1,mask,hx);
         
@@ -17,12 +18,13 @@ public:
                 temp%=mod;
             }
         }
-        return dp[{mask,h}] = temp;
+        return  dp[mask][h] = temp;
         
     }
     
     int numberWays(vector<vector<int>>& hats) {
         // all = (1<<hats.size())-1;
+        memset(dp,-1,sizeof(dp));
         vector<vector<int>> hx(45);
         for(int i=0;i<hats.size();i++){
             for(int j=0;j<hats[i].size();j++){
