@@ -7,13 +7,18 @@ public:
             return a[0]<b[0];
         });
         // sort(env.begin(),env.end());
-        
-        set<int> S;
+        // vector<int> v;
+// for (int i = 0; i < n; i++) {
+    
+//     auto it = lower_bound(v.begin(), v.end(), a[i]);
+//     if (it != v.end()) *it = a[i];
+//     else v.push_back(a[i]);
+
+        vector<int> S;
        for (auto &x : env){
-           if(S.count(x[1])) continue;
-            S.insert(x[1]);
-            auto it = S.upper_bound(x[1]);
-            if(it != S.end()) S.erase(it);
+            auto it = lower_bound(S.begin(),S.end(),x[1]);
+            if(it != S.end()) *it=x[1];
+            else S.push_back(x[1]);
         }
         return S.size();
         
