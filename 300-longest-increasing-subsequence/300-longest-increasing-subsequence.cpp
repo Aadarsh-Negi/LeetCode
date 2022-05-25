@@ -1,33 +1,24 @@
 int dp[2600];
 class Solution {
 public:
-    
-    int solve(int i,vector<int> &ar){
+    int solve(int i,vector<int> &ar,int mn = INT_MIN){
         if(i==ar.size()) return 0;
         
-        if(i==-1){
-            int tx = -1;
-            for(int k=0;k<ar.size();k++){
-                tx = max(tx,2+solve(k,ar));
-            }
-            return tx;
-        }
-        if(dp[i]!=-1) return dp[i];
+        
         int temp = -1;
-        for(int j=i+1;j<ar.size();j++){
-            if(ar[j]>ar[i]){
-                temp = max(temp,1+solve(j,ar));
-            }
+        if(ar[i]>mn){
+            if(dp[i]==-1) dp[i] = 1+solve(i+1,ar,ar[i]);
+            temp = dp[i];
         }
+        temp = max(temp,solve(i+1,ar,mn));
         
-        
-        return dp[i] = temp;
+        return temp;
     }
     
     int lengthOfLIS(vector<int>& nums) {
         memset(dp,-1,sizeof(dp));
         // ans=-1;
-        return solve(-1,nums);
+        return solve(0,nums);
         // return ans;
     }
 };
