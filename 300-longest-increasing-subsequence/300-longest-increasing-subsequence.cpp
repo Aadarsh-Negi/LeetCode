@@ -8,7 +8,7 @@ public:
         if(i==-1){
             int tx = -1;
             for(int k=0;k<ar.size();k++){
-                tx = max(tx,solve(k,ar));
+                tx = max(tx,2+solve(k,ar));
             }
             return tx;
         }
@@ -27,7 +27,7 @@ public:
     int lengthOfLIS(vector<int>& nums) {
         memset(dp,-1,sizeof(dp));
         // ans=-1;
-        return solve(-1,nums)+2;
+        return solve(-1,nums);
         // return ans;
     }
 };
