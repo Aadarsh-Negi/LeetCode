@@ -9,7 +9,7 @@ public:
         // sort(env.begin(),env.end());
         
         set<int> S;
-       for (auto x : env){
+       for (auto &x : env){
            if(S.count(x[1])) continue;
             S.insert(x[1]);
             auto it = S.upper_bound(x[1]);
