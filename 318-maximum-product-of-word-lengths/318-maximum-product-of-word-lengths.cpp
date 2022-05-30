@@ -1,31 +1,43 @@
+#define all(xxx90) xxx90.begin(),xxx90.end()
 class Solution {
 public:
     int maxProduct(vector<string>& words) {
-        int n = words.size();
-        vector<vector<bool>> cnt(words.size(),vector<bool>(27,false));
-        // vector<int> val(n);  
-        for(int i=0;i<words.size();i++){
-            // int c=0;
-            for(char &ch:words[i]){
-                // c++;
-                cnt[i][ch-'a']=1;
-            }
-            // val[i]=c;
-        }
         int ans=0;
-        for(int i=0;i<n;i++){
+        
+        vector<pair<int,int>> val;
+        
+        int i=0;
+        
+        for(string &s:words){
+            vector<int> cnt(27,0);
+            for(char &c:s) cnt[c-'a']++;
+            int res=0;
+            for(int j=0;j<27;j++){
+                // cout<<cnt[j]<<" ";
+                if(cnt[j]){
+                    res|=(1<<j);
+                } 
+            }
+            // cout<<res<<" ";
+            val.push_back({res,s.size()});
+            i++;
+        }
+        i=0;
+        int n = words.size();
+        for(;i<n;i++){
+            int x = val[i].first;
+            int wt = val[i].second;
             for(int j=i+1;j<n;j++){
-                bool ok=1;
-                for(int k=0;k<27;k++){
-                    if(cnt[i][k] && cnt[j][k]){
-                        ok=0;
-                        break;
-                    }
+                int y = val[j].first;
+                int wt2 = val[j].second;
+                if((x&y)==0){
+                    ans=max(ans,wt*wt2);
                 }
-                // int val = 
-                if(ok) ans=max((int)words[i].size()*(int)words[j].size(),ans);
             }
         }
+                          // return ans;
+        
+        
         return ans;
     }
 };
