@@ -1,33 +1,30 @@
 class Solution {
 public:
     int find(int x,vector<int> &par){
-        if(par[x]==-1) return x;
+        if(par[x]<=-1) return x;
         return par[x] = find(par[x],par);
     }
     int removeStones(vector<vector<int>>& st) {
-        const int N = 5e5 + 10;
-        int px = 1e5;
+        const int N = 1e5 + 10;
+       
         vector<int> par(N,-1);
-       // int n = st.size();
-        for(vector<int> &ax:st){ // 
-            int x = find(ax[0],par);
-            int y = find(px+ax[1],par);
-            if(x==y) continue;
-            // par[x]+=par[y];
-            par[x] = y;
+        
+        for(int i=0;i<st.size();i++){
+            for(int j=i+1;j<st.size();j++){
+                if(st[i][0]==st[j][0] || st[j][1]==st[i][1]){
+                    int x = find(i,par);
+                    int y = find(j,par);
+                    if(x==y) continue;
+                    par[x]+=par[y];
+                    par[y] = x;
+                }
+            }
         }
-        set<int> sx;
-        for(vector<int> &ax:st){ // 
-            int x = find(ax[0],par);
-            sx.insert(x);
-        }
         
+        int ans = 0;
         
-        
-        int ans=st.size()-sx.size();
-        
-        
-        
+        for(int i=0;i<N;i++) if(par[i]<-1) ans+=abs(par[i])-1;
+       
         return ans;
         
     }
