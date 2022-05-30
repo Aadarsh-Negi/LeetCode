@@ -5,7 +5,7 @@ public:
         return par[x] = find(par[x],par);
     }
     int removeStones(vector<vector<int>>& st) {
-        const int N = 1e5 + 10;
+        const int N = 1e4 + 10;
        
         vector<int> par(N,-1);
         
