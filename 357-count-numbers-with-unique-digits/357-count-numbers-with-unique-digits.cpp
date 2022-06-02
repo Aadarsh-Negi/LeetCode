@@ -17,9 +17,9 @@ public:
     vector<int> vis;
     int countNumbersWithUniqueDigits(int n) {
         ans=0;
-        
+        vis.resize(10,0);
             for(int i=0;i<=n;i++)
-                    vis.resize(10,0),solve(i);
+                    solve(i);
         // if(n>1) ans++;
         return ans;
   
