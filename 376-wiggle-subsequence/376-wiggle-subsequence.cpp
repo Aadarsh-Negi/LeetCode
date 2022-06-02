@@ -3,7 +3,7 @@ class Solution {
 public:
     vector<int> nums;
     int solve(int i,int val,int fl){
-        if(i>=nums.size()) return 0;
+        if(i>=nums.size()) return 1;
         
         if(val==-1){
             return max(solve(i+1,nums[i],fl),solve(i+1,val,fl));
@@ -28,7 +28,7 @@ public:
     int wiggleMaxLength(vector<int>& nums) {
         memset(dp,-1,sizeof(dp));
         this->nums = nums;
-        return max(solve(0,-1,0),solve(0,-1,1))+1;
+        return max(solve(0,-1,0),solve(0,-1,1));
         
     }
 };
