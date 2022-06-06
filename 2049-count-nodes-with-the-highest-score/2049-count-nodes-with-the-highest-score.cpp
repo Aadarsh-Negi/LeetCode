@@ -11,7 +11,7 @@ public:
         ll mx=-1;
         int cnt=0;
         
-        function<ll(ll)> dfs = [&](ll x){
+        function<int(int)> dfs = [&](int x){
         int l=0;
         int r=0;
         if(gg[x].size()) l = dfs(gg[x][0]);
