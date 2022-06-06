@@ -1,37 +1,34 @@
 #define ll long long
 class Solution {
 public:
+    
     int countHighestScoreNodes(vector<int>& par) {
-        vector<vector<int>> adj(par.size());
+        int ttl=par.size();
         
-        for(int i=1;i<par.size();i++)
-            adj[par[i]].push_back(i);
+        vector<int> gg[par.size()];
         
-        vector<pair<int,int>> sub(par.size());
+        for(int i=1;i<par.size();i++) gg[par[i]].push_back(i);
+        ll mx=-1;
+        int cnt=0;
         
+        function<ll(ll)> dfs = [&](ll x){
+        int l=0;
+        int r=0;
+        if(gg[x].size()) l = dfs(gg[x][0]);
+        if(gg[x].size()>1) r = dfs(gg[x][1]);
         
-        function<int(int)> dfs = [&](int x){
-            int l = 0;
-            int r = 0;
-            if(adj[x].size()) l = dfs(adj[x][0]);
-            if(adj[x].size()>1) r = dfs(adj[x][1]);
-            sub[x] = {l,r};
+        int lx=max(1,l);
+        int rx=max(1,r);
+        int tx =max(1,ttl-1-l-r);
+        ll res = 1ll*lx*rx*tx;
+            if(res>mx){
+                mx=res;
+                cnt=1;
+            }else if(res==mx) cnt++;
+
             return l+r+1;
         };
         dfs(0);
-        
-        ll ans=0;
-        int ttl = par.size();
-        
-        for(auto &[l,r]:sub)
-            // cout<<l<<" "<<r<<"\n";
-         ans = max(ans,1ll*max(1,l)*max(1,r)*max(1,(ttl-1-l-r)));
-        int cnt=0;
-        
-        for(auto &[l,r]:sub)
-           if(ans==1ll*max(1,l)*max(1,r)*max(1,(ttl-1-l-r))) cnt++;
-        
         return cnt;
-
     }
 };
