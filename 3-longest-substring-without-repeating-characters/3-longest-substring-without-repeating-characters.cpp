@@ -2,7 +2,8 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string &s) {
      
-        unordered_map<char,int> cnt;
+        int cnt[505];
+        memset(cnt,0,sizeof(cnt));
         
         int i=0;
         int ls=0;
