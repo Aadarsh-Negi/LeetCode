@@ -1,25 +1,48 @@
-
 class Solution {
 public:
-    bool matchReplacement(string s, string sub, vector<vector<char>>& mappings) {
-        map < char , set <int> > maps;
-        for(auto a : mappings) {
-            maps[a[0]].insert(a[1]);
+    bool matchReplacement(string &s2, string &s, vector<vector<char>>& mappings) {
+        vector<string> subs;
+        unordered_map<char,set<char>> sx;
+        for(auto it:mappings){
+            sx[it[0]].insert(it[1]);
+            
         }
-        int n = s.size() , m = sub.size();
-        for(int i = 0;i<n;i++){
-            int j = 0;
-            for(;j<m;j++){
-                if(i + j >= n)
-                    break;
-                if(s[i + j] == sub[j])
-                    continue;
-                if(maps[sub[j]].find(s[i + j]) == maps[sub[j]].end())
-                    break;
+        // for(auto it:mp) cout<<it.first<<" "<<it.second<<"\n";
+        
+        for(int i=0;i<s2.size();i++){
+            string temp;
+            for(int j=i;j<s2.size();j++){
+                temp+=s2[j];
+                if(temp.size()==s.size())
+                    subs.push_back(temp);
             }
-            if(j == m)
-                return true;
         }
-        return false;
+            int x = s.size();
+        
+        for(string &sub:subs){
+            // cout<<s<<"\n";
+            // if(s.size()==sub.size()){
+                // set<pair<char,char>> used;        
+                bool ok=1;
+                for(int i=0;i<x;i++){
+                    if(s[i]==sub[i]);
+                    else{
+                       if(sx[s[i]].count(sub[i])){
+                           // used.insert({s[i],sub[i]});
+                       }
+                       else {
+                           ok=0;
+                           break;
+                       }
+                    }
+                }
+            // if(ok) cout<<sub<<"\n";
+                if(ok) return 1;
+                
+            // }
+        }
+        
+        // for(string s:subs) cout<<s<<"\n";
+        return 0;
     }
 };
