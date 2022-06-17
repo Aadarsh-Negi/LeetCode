@@ -25,7 +25,7 @@ public:
             temp = solve(root->left,1,0) +solve(root->right,1,0);;
             // temp += 
         }
-        else if(par){
+         if(par){
             if(root->left==NULL || root->right==NULL)  temp = min(temp,solve(root->left, false, false) + solve(root->right, false, false));
             else
                 temp = min({temp,solve(root->left, false, false) + solve(root->right, true, false),solve(root->left, true, false) + solve(root->right, false, false)});
