@@ -17,47 +17,41 @@ public:
             i++;
         }
     }
-    void srch(const string &s,vector<string> &temp){
-        string ax;
+    vector<string> srch(const string &s){
+        vector<string> temp;
+        priority_queue<string> qq;
+        
         Trie *cur = this;
+        
+        string ax;
+        
         for(const char &c:s){
-            if(cur->ar[c-'a']==NULL) return ;
+            if(cur->ar[c-'a']==NULL) return {};
             ax+=c;
             cur = cur->ar[c-'a'];
+            // if(cur->end) qq.push(ax);
+            // if(qq.size()>3) qq.pop();
         }
-        dfs(cur,ax,temp);
-    }
-//         vector<string> temp;
-//         // set<string> qq;
         
-//         Trie *cur = this;
-        
-//         string ax;
-        
-//         for(const char &c:s){
-//             if(cur->ar[c-'a']==NULL) return {};
-//             ax+=c;
-//             cur = cur->ar[c-'a'];
-//             if(cur->end) temp.push_back(ax);
-//             if(temp.size()==3) return temp;
-// //             if(qq.size()>3){
-// //                 auto it = qq.end(); it--;
-                
-// //                 qq.erase(it);
-// //             }
-//         }
-//         int fl=0;
-        void dfs(Trie *rx,string &ax,vector<string> &temp){
-            if(temp.size()==3) return;
-            if(rx->end) {temp.push_back(ax);}
+        function<void(Trie *)> rem = [&](Trie *rx){
+            if(rx->end) {qq.push(ax); if(qq.size()>3) qq.pop();}
             for(int i=0;i<27;i++){
                 if(rx->ar[i]){
                     ax+=('a' + i);
-                    dfs(rx->ar[i],ax,temp);
+                    rem(rx->ar[i]);
+                    
                     ax.pop_back();
                 }
             }
-        }
+        };
+        // for(int i=0;i<27;i++)
+            rem(cur);
+        
+        while(qq.size()) temp.push_back(qq.top()),qq.pop();
+        
+        reverse(temp.begin(),temp.end());
+        return temp;
+    }
     
     
 };
@@ -68,12 +62,10 @@ public:
         for(string &s:pp) root->insert(s);
         
         string cur;
-        vector<vector<string>> ans(ss.size());
-        int i=0;
+        vector<vector<string>> ans;
         for(char &c:ss){
             cur+=c;
-            root->srch(cur,ans[i]);
-            i++;
+            ans.push_back(root->srch(cur));
         }
         return ans;
     }
