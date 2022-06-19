@@ -19,41 +19,28 @@ public:
     }
     vector<string> srch(const string &s){
         vector<string> temp;
-        priority_queue<string> qq;
-        
         Trie *cur = this;
-        
         string ax;
-        
         for(const char &c:s){
             if(cur->ar[c-'a']==NULL) return {};
             ax+=c;
             cur = cur->ar[c-'a'];
-            // if(cur->end) qq.push(ax);
-            // if(qq.size()>3) qq.pop();
         }
         
         function<void(Trie *)> rem = [&](Trie *rx){
-            if(rx->end) {qq.push(ax); if(qq.size()>3) qq.pop();}
+            if(temp.size()==3) return;
+            if(rx->end) temp.push_back(ax);
             for(int i=0;i<27;i++){
                 if(rx->ar[i]){
                     ax+=('a' + i);
                     rem(rx->ar[i]);
-                    
                     ax.pop_back();
                 }
             }
         };
-        // for(int i=0;i<27;i++)
-            rem(cur);
-        
-        while(qq.size()) temp.push_back(qq.top()),qq.pop();
-        
-        reverse(temp.begin(),temp.end());
+        rem(cur);
         return temp;
     }
-    
-    
 };
 class Solution {
 public:
