@@ -17,16 +17,13 @@ public:
             i++;
         }
     }
-    vector<string> srch(const string &s){
-        vector<string> temp;
+    void srch(const string &s,vector<string> &temp){
         Trie *cur = this;
-        string ax;
+        string ax = s;
         for(const char &c:s){
-            if(cur->ar[c-'a']==NULL) return {};
-            ax+=c;
+            if(cur->ar[c-'a']==NULL) return;
             cur = cur->ar[c-'a'];
         }
-        
         function<void(Trie *)> rem = [&](Trie *rx){
             if(temp.size()==3) return;
             if(rx->end) temp.push_back(ax);
@@ -39,7 +36,6 @@ public:
             }
         };
         rem(cur);
-        return temp;
     }
 };
 class Solution {
@@ -49,10 +45,10 @@ public:
         for(string &s:pp) root->insert(s);
         
         string cur;
-        vector<vector<string>> ans;
+        vector<vector<string>> ans(ss.size());
         for(char &c:ss){
             cur+=c;
-            ans.push_back(root->srch(cur));
+            root->srch(cur,ans[cur.size()-1]);
         }
         return ans;
     }
