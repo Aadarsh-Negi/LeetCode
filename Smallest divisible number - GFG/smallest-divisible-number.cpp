@@ -6,16 +6,34 @@ using namespace std;
 
  // } Driver Code Ends
 //User function template for C++
-
+#define ll long long
+ll power(ll x, ll y){ ll res = 1ll; while (y > 0ll) { if (y & 1ll)res = res * x; y = y >> 1ll; x = x * x;}return res;}
 class Solution{
 public:
     long long getSmallestDivNum(long long n){
-        long long a=1;
         
-        for(long long i=1;i<=n;i++){
-            a = a/__gcd(a,i) * i;
+        map<int,int> pr;
+        for(long long val= 1;val<=n;val++){
+            long long i =val;
+            for(long long j=2;j*j<=i;j++){
+                if(i%j==0){
+                    int cnt=0;
+                    while(i%j==0){
+                        cnt++;
+                        i/=j;
+                    }
+                    pr[j] = max(pr[j],cnt);
+                }
+            }
+            if(i>1) pr[i] = max(pr[i],1);
+            
         }
-        return a;
+        long long ans = 1;
+        for(auto it:pr){
+            ans*=power(it.first,it.second);
+        }
+        return ans;
+        
         
     }
 };
