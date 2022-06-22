@@ -8,7 +8,7 @@ public:
         
         unordered_map<string,int> prev;
         int ans=0;
-        for(string &s:words){
+        for(const string &s:words){
             int len=0;
             for(int i=0;i<s.size();i++){
                 string temp = s;
