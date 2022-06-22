@@ -6,7 +6,7 @@ public:
            return a.size() < b.size();
         });
         
-        unordered_map<string,int> prev;
+        map<string,int> prev;
         int ans=0;
         for(const string &s:words){
             int len=0;
