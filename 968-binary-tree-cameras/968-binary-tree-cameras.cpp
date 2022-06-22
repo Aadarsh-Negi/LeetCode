@@ -11,34 +11,28 @@
  */
 class Solution {
 public:
-    vector<int> done;
     int ans;
-    void dfs(TreeNode *root,TreeNode *par){
-        if(!root) return;
-        dfs(root->left,root);
-        dfs(root->right,root);
+    // 0 - cover
+    // 1 - req
+    // 2 - plc;
+    int solve(TreeNode *root){
+        if(!root) return 0;
         
-        // if(par==NULL){
-            if((par==NULL && !done[root->val]) || (root->left && !done[root->left->val]) || (root->right && !done[root->right->val])){
-                ans++;
-                done[root->val]=1;
-                if(par) done[par->val]=1;
-                if(root->left) done[root->left->val]=1;
-                if(root->right) done[root->right->val]=1;
-            }
-        // }
+        int l = solve(root->left);
+        int r = solve(root->right);
+        
+        if(r==1 || l==1){
+            ans++;
+            return 2;
+        }
+        if(l==0 and r==0) return 1;
+        if(l==2 or r==2) return 0;
+        return 4;
+        
+        
     }
-    
-    void valx(TreeNode *root,int &c){if(!root) return; root->val=c++; valx(root->left,c); valx(root->right,c);}
     int minCameraCover(TreeNode* root) {
-        int v=0;
-        ans=0;
-        valx(root,v);
-        done.resize(v+1,0);
-        
-        dfs(root,NULL);
-        
+        if(solve(root)==1) ans++;
         return ans;
-        
     }
 };
