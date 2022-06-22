@@ -11,34 +11,34 @@
  */
 class Solution {
 public:
-    map<string,int> dp;
-    int solve(TreeNode *root,bool par = true,bool par_cam = false){
-        if(!root) return 0;
-        if(root->left==root->right) return (par_cam?0:1);
+    vector<int> done;
+    int ans;
+    void dfs(TreeNode *root,TreeNode *par){
+        if(!root) return;
+        dfs(root->left,root);
+        dfs(root->right,root);
         
-        string key = to_string(root->val) + "." + to_string(par) + "." + to_string(par_cam);
-        // cout<<key<<"\n";
-        if(dp.count(key)) return dp[key];
-        
-        int temp = INT_MAX/2;
-        if(par_cam){
-            temp = solve(root->left,1,0) +solve(root->right,1,0);;
-            // temp += 
-        }
-         if(par){
-            if(root->left==NULL || root->right==NULL)  temp = min(temp,solve(root->left, false, false) + solve(root->right, false, false));
-            else
-                temp = min({temp,solve(root->left, false, false) + solve(root->right, true, false),solve(root->left, true, false) + solve(root->right, false, false)});
-        }
-        temp=min(temp,1+solve(root->left,1,1)+solve(root->right,1,1));
-        
-        return dp[key] = temp;
+        // if(par==NULL){
+            if((par==NULL && !done[root->val]) || (root->left && !done[root->left->val]) || (root->right && !done[root->right->val])){
+                ans++;
+                done[root->val]=1;
+                if(par) done[par->val]=1;
+                if(root->left) done[root->left->val]=1;
+                if(root->right) done[root->right->val]=1;
+            }
+        // }
     }
-    int c;
-    void dfs(TreeNode *root){if(!root) return; root->val = c++; dfs(root->left); dfs(root->right);}
+    
+    void valx(TreeNode *root,int &c){if(!root) return; root->val=c++; valx(root->left,c); valx(root->right,c);}
     int minCameraCover(TreeNode* root) {
-        c=0;
-        dfs(root);
-        return solve(root);
+        int v=0;
+        ans=0;
+        valx(root,v);
+        done.resize(v+1,0);
+        
+        dfs(root,NULL);
+        
+        return ans;
+        
     }
 };
