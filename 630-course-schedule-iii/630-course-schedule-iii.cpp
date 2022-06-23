@@ -1,49 +1,30 @@
 class Solution {
 public:
-    int scheduleCourse(vector<vector<int>>& arr) {
+    int scheduleCourse(vector<vector<int>>& ar) {
+        priority_queue<int> taken;
+        sort(ar.begin(),ar.end(),[&](vector<int> &a,vector<int> &b){
+           return a[1]<b[1]; 
+        });
+        int time=0;
         
-        sort(arr.begin(),arr.end(),[&](const vector<int>&a , const vector<int>&b)
-             {
-                 
-                 
-                     if(a[1] == b[1]) 
-                 return a[0] > b[0];
-                return a[1]<b[1] ;
-             });
-        
-//         for(auto & x : arr)
-//         {
-//             cout<<x[1]<<" ";
-//         }
-        
-        int pre = 0 ,time = 0 , c = 0;
-        priority_queue<int>q;
-     
-        
-        for(int i = 0;i<arr.size();i++)
-        {
-          if(arr[i][0] + time <= arr[i][1])
-          {
-              q.push(arr[i][0]);
-              time+=arr[i][0];
-              c++;
-          }
-            
-          else
-          {
-              
-              if(q.size() && q.top()> arr[i][0])
-              {
-                  int x = q.top();
-                  q.pop();
-                  q.push(arr[i][0]);
-                  time  += (arr[i][0]-x);
-              }
-          }
+        for(int i=0;i<ar.size();i++){
+            if(time + ar[i][0] <=ar[i][1]){
+                taken.push(ar[i][0]);
+                time+=ar[i][0];
+            }else{
+                if(taken.size() && taken.top() > ar[i][0]){
+                    time-=taken.top();
+                    taken.pop();
+                    time+=ar[i][0];
+                    taken.push(ar[i][0]);
+                }
+            }
         }
         
-        return c;
-        return 0;
-
+        
+        
+        
+        return taken.size();
+        
     }
 };
