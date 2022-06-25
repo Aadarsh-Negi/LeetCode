@@ -1,6 +1,6 @@
 class Solution {
 public:
-    long long countPairs(int n, vector<vector<int>>& edges) {
+    long long countPairs(long long n, vector<vector<int>>& edges) {
          vector<long long> par(n+10,-1);
     
     function<long long(long long)> find = [&](long long x){
@@ -23,12 +23,13 @@ public:
         for(int i=0;i<n;i++){
             if(par[i]<=-1) val.push_back(abs(par[i]));
         }
-        // for(long long i:val) cout<<i<< " ";
+        ans = n*(n+1);
+        ans/=2;
         for(int i=0;i<val.size();i++){
-            // for(int j=i+1;j<val.size();j++){
-                ans+=val[i]*(n-val[i]);
-            // }
+            
+                ans-=(val[i]*(val[i]+1))/2;
+            
         }
-        return ans/2;
+        return ans;
     }
 };
