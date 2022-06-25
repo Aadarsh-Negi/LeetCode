@@ -1,8 +1,6 @@
 class Solution {
 public:
-    int maximumXOR(vector<int>& nums) {
-        int ans=0;
-        for(const int &i:nums) ans|=i;
-        return ans;
+    int maximumXOR(vector<int>& nums,int i=0) {
+        return i<nums.size()?nums[i]|maximumXOR(nums,i+1):0;
     }
 };
