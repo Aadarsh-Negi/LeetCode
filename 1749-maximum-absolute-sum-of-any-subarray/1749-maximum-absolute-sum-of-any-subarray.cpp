@@ -1,23 +1,19 @@
 class Solution {
 public:
     
-    int solve(vector<int> &a,int x){
-
-   int max_so_far = a[0];
-   int curr_max = a[0];
- 
-   for (int i = 1; i < a.size(); i++)
-   {
-       if(x){
-        curr_max = max(a[i], curr_max+a[i]);
-        max_so_far = max(max_so_far, curr_max);   
-       }else{
-           curr_max = min(a[i], curr_max+a[i]);
-            max_so_far = min(max_so_far, curr_max);   
-       } 
-        
-   }
-        return abs(max_so_far);
+    int solve(vector<int> &nums,int x){
+        int m=0;
+        int s=0;
+        for(int &i:nums){
+            if(x){
+                s = min(i,s+i);
+                m = min(m,s);
+            }else{
+                s = max(i,s+i);
+                m = max(m,s);
+            }
+        }
+        return abs(m);
     }
     
     int maxAbsoluteSum(vector<int>& nums) {
