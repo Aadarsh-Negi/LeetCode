@@ -59,7 +59,6 @@ public:
         m = g[0].size();
         cnt.resize(n,vi(m,-1));
         
-        for(int i=0;i<n;i++) for(int j=0;j<m;j++) dfs(i,j);
         long long ans=n*m;
         for(int i=0;i<n;i++) {
             for(int j=0;j<m;j++){
@@ -68,7 +67,7 @@ public:
                     int jx = j + dy[k];
                     if(ix<0 || jx<0 || ix>=n || jx>=m) continue;
                     if(g[ix][jx] > g[i][j])
-                        ans+=1+cnt[ix][jx],ans%=mod;
+                        ans+=1+dfs(ix,jx),ans%=mod;
                     
                 }
             }
