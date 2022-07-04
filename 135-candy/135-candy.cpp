@@ -17,17 +17,20 @@ public:
             // for(int i:ok) cout<<i<<" ";cout<<"\n";
         }
         // cout<<"\n";
-        
-    while(1){
-        vector<int> temp = ok;
+    int fl=1;  
+    while(fl){
+        fl=0;
+        // vector<int> temp = ok;
             for(int i=1;i<r.size()-1;i++){
             if(r[i]>r[i+1] && ok[i+1]>=ok[i]){
                 ok[i] = ok[i+1]+1;
+                fl=1;
             }else if(r[i]>r[i-1] && ok[i-1]>=ok[i]){
                 ok[i] = ok[i-1]+1;
+                fl=1;
             }
         }
-        if(ok==temp) break;
+        // if(ok==temp) break;
     }
         // for(int i:ok) cout<<i<<" ";cout<<"\n";
         
