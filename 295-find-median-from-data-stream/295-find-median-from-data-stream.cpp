@@ -26,13 +26,7 @@ public:
     }
     
     double findMedian() {
-        if(q1.size()==q2.size()){
-            int v = -q1.top();
-            int v2 = q2.top();
-            
-            return (v+v2+0.0)/2.0;
-        }
-       return q1.size() > q2.size() ? -q1.top():q2.top();
+       return q1.size() == q2.size() ? (-q1.top()+q2.top()+0.0)/2.0:q1.size()>q2.size()?-q1.top():q2.top();
     }
 };
 
