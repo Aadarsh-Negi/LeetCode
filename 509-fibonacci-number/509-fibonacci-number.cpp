@@ -1,7 +1,6 @@
-vector<int> ax(33,-1);
 class Solution {
 public:
-    int fib(int n) {
-        return ax[n]!=-1 ? ax[n] : n<=1 ? n : ax[n] = fib(n-1) + fib(n-2);
+    int fib(int n,int i=0,int j=1) {
+        return n==0 ? i : fib(n-1,j,i+j);
     }
 };
