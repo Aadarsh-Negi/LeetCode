@@ -1,6 +1,7 @@
 class Solution {
 public:
+    unordered_map<int,int> ax;
     int fib(int n) {
-        return n<=1 ? n : fib(n-1) + fib(n-2);
+        return ax[n]!=0 ? ax[n] : n<=1 ? n : ax[n] = fib(n-1) + fib(n-2);
     }
 };
