@@ -6,11 +6,11 @@ public:
         if(i==s.size()) return 0;
         if(dp[i][j]!=-1) return dp[i][j];
         
-        int temp = 0;
+        dp[i][j] = 0;
         if(s[i]==t[j])
-            temp += solve(s,t,i+1,j+1);
-        temp+=solve(s,t,i+1,j);
-        return dp[i][j] = temp;
+            dp[i][j] += solve(s,t,i+1,j+1);
+        dp[i][j]+=solve(s,t,i+1,j);
+        return dp[i][j];
     }
     int numDistinct(string &s, string &t) {
         memset(dp,-1,sizeof(dp));
