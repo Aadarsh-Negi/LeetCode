@@ -4,6 +4,7 @@ public:
     bool solve(string &a,string &b,string &c,int i=0,int j=0,int k=0){
         if(i==a.size() && j==b.size() && k==c.size()) return 1;
         if(dp[i][j]!=-1) return dp[i][j];
+        // if(k==c.size()) return 0;
         int temp = 0;
         if(i<a.size() && a[i] == c[k]) temp|=solve(a,b,c,i+1,j,k+1);
         if(j<b.size() && b[j] == c[k]) temp|=solve(a,b,c,i,j+1,k+1);
