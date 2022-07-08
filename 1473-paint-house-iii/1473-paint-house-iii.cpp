@@ -1,4 +1,4 @@
-int dp[103][103][103];
+int dp[103][103][23];
 class Solution {
 public:
     int minCost(vector<int>& h, vector<vector<int>>& cost, int m, int n, int t) {
