@@ -12,22 +12,21 @@ int  dp[104][104];
 class Solution
 {
     public:
-    int solve(string &a,string &b,int i=0,int j=0){
-        if(i>=a.size() || j>=b.size()) return 0;
-        
-        if(dp[i][j]!=-1) return dp[i][j];
-        
-        int temp = 0;
-        if(a[i] == b[j]) temp =  1+solve(a,b,i+1,j+1);
-        temp = max(temp,solve(a,b,i+1,j));
-        temp = max(temp,solve(a,b,i,j+1));
-        return dp[i][j]= temp;
-    }
+   
     //Function to find length of shortest common supersequence of two strings.
     int shortestCommonSupersequence(string X, string Y, int m, int n)
     {
-        memset(dp,-1,sizeof(dp));
-        int l = solve(X,Y);
+        memset(dp,0,sizeof(dp));
+        
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(X[i-1]==Y[j-1]){
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                }else dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+        
+        int l = dp[m][n];
         return (n+m) - l;
         //code here
     }
