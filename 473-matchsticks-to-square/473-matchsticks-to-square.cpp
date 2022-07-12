@@ -1,39 +1,36 @@
 class Solution {
 public:
-    
-    int ech;
-    
-    bool solve(vector<int> &ar,int sum,int k,vector<int> &done,int j=0){
+    bool makesquare(vector<int>& ar) {
+        int n = ar.size();
+        int ss=0;
+        for(int &i:ar) ss+=i;
         
-        if(k==1){
-            return 1;
-        }
-        if(sum==0){
-            return solve(ar,ech,k-1,done);
-        }
+        if(ss%4) return false;
         
-        for(int i=j;i<ar.size();i++){
-            if(!done[i] && ar[i]<=sum){
-                done[i] = 1;
-                if(solve(ar,sum - ar[i],k,done,i+1)) return 1;
-                done[i] = 0;
+        ss/=4;
+        
+        vector<int> prev_valid;
+        vector<bool> valid_2(1<<n,false);
+        
+        for(int i=0;i<(1<<n);i++){
+            
+            int c=0;
+            for(int j=0;j<n;j++){
+                if(i&(1<<j)) c+=ar[j];
+            }
+            if(c==ss){
+                for(int &k:prev_valid){
+                    if(k&i);
+                    else{
+                        if(valid_2[((1<<n)-1)^(k|i)]) return 1;
+                        valid_2[k|i] = 1;
+                    }
+                }
+                prev_valid.push_back(i);
             }
         }
         return 0;
         
-    }
-    bool makesquare(vector<int>& ar) {
-        int ss=0;
-        for(int &i:ar) ss+=i;
-        if(ss%4) return 0;
         
-        ech = ss/4;
-        
-        vector<int> done(ar.size(),0);
-        
-        return solve(ar,ech,4,done);
-        
-        // return ans;
-     
     }
 };
