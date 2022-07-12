@@ -9,27 +9,25 @@ public:
         
         ss/=4;
         
-        vector<int> prev_valid;
-        vector<bool> valid_2(1<<n,false);
         
+        vector<int> dp(1<<n,-1);
+        dp[0] = 0;
         for(int i=0;i<(1<<n);i++){
             
-            int c=0;
+            if(dp[i]==-1) continue;
+            
             for(int j=0;j<n;j++){
-                if(i&(1<<j)) c+=ar[j];
-            }
-            if(c==ss){
-                for(int &k:prev_valid){
-                    if(k&i);
-                    else{
-                        if(valid_2[((1<<n)-1)^(k|i)]) return 1;
-                        valid_2[k|i] = 1;
-                    }
+                if(i&(1<<j));
+                else if(dp[i] + ar[j] > ss);
+                else{
+                    dp[i|(1<<j)] = (dp[i] + ar[j])%ss;
                 }
-                prev_valid.push_back(i);
             }
+            
         }
-        return 0;
+        
+        
+        return dp[(1<<n)-1]==0;
         
         
     }
