@@ -28,7 +28,7 @@ public:
         }
         long long ans=0;
         for(auto &i:ar){
-            if(i >= l) i=max(0LL,0LL + l - (--xx>=0 ? 1:0));
+            if(i >= cap) i=max(0LL,0LL + cap - (--xx>=0 ? 1:0));
             ans+=(i*i*1LL);
         }
         return ans;
