@@ -11,7 +11,7 @@ public:
         ll r = 1e15;
         ll xx = 0;
         ll cap=0;
-        while(l<r){
+        while(l<=r){
             ll mid = l + (r-l)/2;
             
             ll ops=0;
@@ -23,7 +23,7 @@ public:
             if(ops<=k1+k2){
                 xx = k1+k2 - ops; 
                 cap = mid;
-                r = mid;
+                r = mid-1;
             }else l = mid+1;
         }
         long long ans=0;
