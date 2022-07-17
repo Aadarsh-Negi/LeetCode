@@ -1,38 +1,19 @@
 class Solution {
 public:
-    vector<int> smallestTrimmedNumbers(vector<string>& ar, vector<vector<int>>& q) {
-        
-        vector<vector<pair<string,int>>> part(ar[0].size()+2);
-        vector<int> ans;
-        for(int i=0;i<ar.size();i++){
-            string s = ar[i];
-            string temp;
-            int c=1;
-            for(int j=s.size()-1;j>=0;j--){
-                temp = s[j] + temp;
-                part[c].push_back({temp,i});
-                c++;
-            }
-        }
-        
-        
-        for(auto &it:part){
-            // for(auto ix:it){
-            //     cout<<ix.first<<" "<<ix.second<<"\n";
-            // }
-            // cout<<"\n";
-            sort(it.begin(),it.end());
-        }
-        
-        for(auto it:q){
-            int c = it[1];
-            int k = it[0];
-            // cout<<c<<" "<<k<<" "<<part[c].size()<<" >";
-            // for(pair<string,int> i:part[c]) cout<<i.first<<" "<<i.second<<" >"<<" ";cout<<"\n";
-            
-            ans.push_back((part[c][k-1].second));
-        }
-        return ans;
-        
+vector<int> smallestTrimmedNumbers(vector<string>& nums, vector<vector<int>>& queries) {
+    int n = nums[0].size();
+    vector<pair<string, int>> pairs;
+    for (int i = 0; i < nums.size(); ++i)
+        pairs.push_back({ nums[i], i });
+    vector<int> res;
+    for(auto &q : queries) {
+        int k = q[0], trim = q[1];
+        nth_element(begin(pairs), begin(pairs) + k - 1, end(pairs), [&](const auto &a, const auto &b){
+            int cmp = a.first.compare(n - trim, string::npos, b.first, n - trim, string::npos);
+            return cmp == 0 ? a.second < b.second : cmp < 0;
+        });
+        res.push_back(pairs[k - 1].second);
     }
+    return res;
+}
 };
