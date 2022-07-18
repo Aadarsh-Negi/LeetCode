@@ -6,7 +6,7 @@ public:
         int m = mat[0].size();
         
         
-        memset(pref,0,sizeof(pref));
+        // memset(pref,0,sizeof(pref));
         
         for(int i=1;i<=n;i++){
             for(int j=1;j<=m;j++){
