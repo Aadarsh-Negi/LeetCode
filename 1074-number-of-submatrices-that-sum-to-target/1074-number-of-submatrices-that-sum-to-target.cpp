@@ -1,4 +1,5 @@
-int pref[104][104];
+// int pref[104][104];
+vector<vector<int>> pref(103+2,vector<int>(103+3,0));
 class Solution {
 public:
     int numSubmatrixSumTarget(vector<vector<int>>& mat, int tar) {
