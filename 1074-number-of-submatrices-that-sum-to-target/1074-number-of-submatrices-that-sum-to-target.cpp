@@ -1,9 +1,10 @@
+int pref[104][104];
 class Solution {
 public:
     int numSubmatrixSumTarget(vector<vector<int>>& mat, int tar) {
         int n = mat.size();
         int m = mat[0].size();
-        int pref[n+1][m+1];
+        
         
         memset(pref,0,sizeof(pref));
         
