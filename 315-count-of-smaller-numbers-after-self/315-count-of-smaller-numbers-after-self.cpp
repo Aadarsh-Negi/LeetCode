@@ -4,7 +4,7 @@ public:
         int n = nums.size();
         
         vector<int> ans(n,0);
-        int const N = 3e5;
+        int const N = 3e4;
         vector<int> fen(N,0);
         auto sum = [&](int i){
             int res=0;
