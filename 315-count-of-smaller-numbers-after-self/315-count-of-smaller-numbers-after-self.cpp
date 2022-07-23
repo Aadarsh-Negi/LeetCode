@@ -1,21 +1,33 @@
-
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
-#define m_os tree<int, null_type,less_equal<int>, rb_tree_tag,tree_order_statistics_node_update>
 class Solution {
 public:
     vector<int> countSmaller(vector<int>& nums) {
         int n = nums.size();
-        m_os cnt;
-        vector<int> ans(n);
+        
+        vector<int> ans(n,0);
+        int const N = 3e5;
+        vector<int> fen(N,0);
+        auto sum = [&](int i){
+            int res=0;
+            while(i>0){
+                res+=fen[i];
+                i-=i&(-i);
+            }
+            return res;
+        };
+        auto update = [&](int i){
+            while(i<N){
+                fen[i]++;
+                i+=i&(-i);
+            }
+        };
+        auto idx = [&](int i){
+          return i + 1e4+2;  
+        };
         
         for(int i=n-1;i>=0;i--){
-            cnt.insert(nums[i]);
-            
-            
-            ans[i] = cnt.order_of_key(nums[i]);
-            
+            int res = sum(idx(nums[i])-1);
+            ans[i] = res;
+            update(idx(nums[i]));
         }
         
         
