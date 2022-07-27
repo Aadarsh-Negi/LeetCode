@@ -2,8 +2,7 @@ class Solution {
 public:
     
     void flatten(TreeNode* root) {
-         if(nullptr == root)
-            return;
+         if(root == nullptr) return;
         
         TreeNode *rt = root->right;
         
