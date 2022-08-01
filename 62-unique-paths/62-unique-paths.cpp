@@ -1,24 +1,13 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        int grid[m+2][n+2];
-       
+        vector<vector<int>> ans(m,vector<int>(n,1));
         
-        for(int i=1;i<=m;i++){
-            for(int j=1;j<=n;j++){
-                if(i==1){
-                    grid[i][j]=1;
-                }else if(j==1){
-                    grid[i][j]=1;
-                }else{
-                    grid[i][j]=(grid[i-1][j]+grid[i][j-1]);
-                }
-                // cout<<grid[i][j]<<" ";
-            }
-            // cout<<"\n";
-        }
+        for(int i=1;i<m;i++)
+            for(int j=1;j<n;j++)
+                ans[i][j] = ans[i-1][j] + ans[i][j-1];
         
-        return grid[m][n];
+        return ans[m-1][n-1];
         
     }
 };
