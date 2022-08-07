@@ -4,13 +4,13 @@ int dp[28][N];
 class Solution {
 public:
     string vowel;
-    unordered_map<char,string> req;
+   vector<string> req;
     int solve(char c,int n){
         if(n==0) return 1;
         if(dp[c-'a'][n]!=-1) return dp[c-'a'][n];
         long long temp=0;
         
-        for(char &cx:req[c]){
+        for(char &cx:req[c-'a']){
             temp+=solve(cx,n-1);
             temp%=mod;
         }
@@ -22,11 +22,12 @@ public:
         memset(dp,-1,sizeof(dp));
         int ans = 0;
         vowel = "aeiou";
-        req['a'] = "e";
-        req['e'] = "ai";
-        req['i'] = "aeou";
-        req['o'] = "iu";
-        req['u'] = 'a';
+        req.resize(28);
+        req['a' - 'a'] = "e";
+        req['e' - 'a'] = "ai";
+        req['i' -'a'] = "aeou";
+        req['o'-'a'] = "iu";
+        req['u'-'a'] = 'a';
         for(char &c:vowel){
             ans+=solve(c,n-1);
             ans%=mod;
