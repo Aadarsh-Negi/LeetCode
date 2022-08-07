@@ -4,7 +4,7 @@ int dp[28][N];
 class Solution {
 public:
     string vowel;
-    map<char,string> req;
+    unordered_map<char,string> req;
     int solve(char c,int n){
         if(n==0) return 1;
         if(dp[c-'a'][n]!=-1) return dp[c-'a'][n];
