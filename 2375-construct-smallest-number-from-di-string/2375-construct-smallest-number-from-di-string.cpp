@@ -2,7 +2,7 @@ class Solution {
 public:
     string smallestNumber(string &pp) {
        string ans = "9999999999999";
-        vector<char> ar = {'1','2','3','4','5','6','7','8','9'};
+        char ar[] = {'1','2','3','4','5','6','7','8','9'};
         do{
             int idx=0;
             bool ok=1;
@@ -19,7 +19,7 @@ public:
                 for(int i=0;i<=pp.size();i++) temp+=ar[i];
                 ans=min(ans,temp);
             }
-        }while(next_permutation(ar.begin(),ar.end()));
+        }while(next_permutation(ar,ar+9));
         
         return ans;
         
