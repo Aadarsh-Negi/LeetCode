@@ -8,9 +8,9 @@ public:
             bool ok=1;
             for(int i=0;i<pp.size();i++){
                 if(pp[i]=='I'){
-                    if(ar[idx] >= ar[idx+1]){ ok=0; break;}
+                    if(ar[idx] >= ar[idx+1]){ ok=0;}
                 }else{
-                    if(ar[idx] <= ar[idx+1]) {ok=0; break;}
+                    if(ar[idx] <= ar[idx+1]) {ok=0; }
                 }
                 idx++;
             }
