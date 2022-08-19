@@ -1,12 +1,13 @@
 class Solution {
 public:
     bool isPossible(vector<int>& ar) {
-       unordered_map<int,int> lf;
-       unordered_map<int,int> ed;
+       int lf[2105]={0};
+       int ed[2105]={0};
         
-       for(int i:ar) lf[i]++;
+       for(int i:ar) lf[i+1010]++;
        
         for(int i:ar){
+            i+=1010;
             if(!lf[i]) continue;
             lf[i]--;
             if(ed[i-1]){
