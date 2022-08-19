@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
-        unordered_map<string,int> hash;
+        map<string,int> hash;
         vector<int> ans;
         int sz = words.size();
         int lx = words[0].size();
@@ -12,7 +12,7 @@ public:
             string sx;
             bool ok=1;
             int cc=0;
-            unordered_map<string,int> cur;
+            map<string,int> cur;
             for(int k=0;k < sz*lx;k++){
                 if(i+k<n){
                     sx+=s[i+k];
