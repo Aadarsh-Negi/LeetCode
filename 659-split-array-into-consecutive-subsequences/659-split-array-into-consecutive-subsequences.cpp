@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool isPossible(vector<int>& ar) {
-       map<int,int> lf;
-       map<int,int> ed;
+       unordered_map<int,int> lf;
+       unordered_map<int,int> ed;
         
        for(int i:ar) lf[i]++;
        
