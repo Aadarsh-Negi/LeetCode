@@ -19,34 +19,25 @@ public:
         
 //         return dp[i][j] = temp;
 //     }
-     int minRefuelStops(int target, int cur, vector<vector<int>> s) {
-        int i = 0, res;
-        priority_queue<int>pq;
-        for (res = 0; cur < target; res++) {
-            while (i < s.size() && s[i][0] <= cur)
-                pq.push(s[i++][1]);
-            if (pq.empty()) return -1;
-            cur += pq.top(), pq.pop();
-        }
-        return res;
-    }
-//     int minRefuelStops(int tar, int cur, vector<vector<int>>& sx) {
+
+    int minRefuelStops(int tar, int cur, vector<vector<int>>& sx) {
         
-//         int ans=0;
-//         priority_queue<int> qq;
-//         int i=0;
-//         while(cur < tar){
-//             while(i<sx.size() && sx[i][0]<=cur) qq.push(sx[i++][1]);
+        int ans=0;
+        priority_queue<int> qq;
+        int i=0;
+        while(cur < tar){
+            while(i<sx.size() && sx[i][0]<=cur) qq.push(sx[i++][1]);
             
-//             if(qq.size()==0) return -1;
-            
-//         }
-//         return ans;
-//         // sx.insert(sx.begin(),{0,0});
-//         // sx.push_back({tar,0});
-//         // memset(dp,-1,sizeof(dp));
-//         // int ans = solve(1,0,cur,sx);
-//         // if(ans>=LLONG_MAX/2) ans=-1;
-//         // return ans;
-//     }
+            if(qq.size()==0) return -1;
+            ans++;
+            cur+=qq.top(); qq.pop();
+        }
+        return ans;
+        // sx.insert(sx.begin(),{0,0});
+        // sx.push_back({tar,0});
+        // memset(dp,-1,sizeof(dp));
+        // int ans = solve(1,0,cur,sx);
+        // if(ans>=LLONG_MAX/2) ans=-1;
+        // return ans;
+    }
 };
