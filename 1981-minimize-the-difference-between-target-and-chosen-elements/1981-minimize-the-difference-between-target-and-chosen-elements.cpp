@@ -10,6 +10,8 @@ public:
         if(dp[i][ttl]!=-1) return dp[i][ttl];
         int temp = INT_MAX;
         for(int j=0;j<m;j++){
+            if(j>0 && ar[i][j-1]==ar[i][j]) continue;
+            
             temp = min(temp,solve(i+1,ttl+ar[i][j]));
             if(temp==0) break;
         }
