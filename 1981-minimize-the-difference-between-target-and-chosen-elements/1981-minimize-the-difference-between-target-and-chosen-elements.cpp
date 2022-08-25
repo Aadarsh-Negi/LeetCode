@@ -11,6 +11,7 @@ public:
         int temp = INT_MAX;
         for(int j=0;j<m;j++){
             temp = min(temp,solve(i+1,ttl+ar[i][j]));
+            if(temp==0) break;
         }
         return dp[i][ttl] = temp;
     }
