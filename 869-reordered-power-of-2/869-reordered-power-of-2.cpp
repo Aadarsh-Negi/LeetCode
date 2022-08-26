@@ -7,8 +7,7 @@ public:
         do{
             if(val.front()!='0'){
                 int x = stoi(val);
-                while(x && x%2==0) x/=2;
-                ok|=(x==1);
+                ok|=(x&(x-1))==0;
             }
             
         }while(next_permutation(val.begin(),val.end()));
