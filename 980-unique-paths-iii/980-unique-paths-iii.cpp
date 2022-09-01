@@ -11,7 +11,7 @@ public:
         
         int ans=0;
         
-        function<void(int,int,int)> solve = [&](int i,int j,int free){
+       auto solve = [&](auto && solve,int i,int j,int free){
             if(i<0 || j<0 || i>=n || j>=m || gg[i][j]==3 || gg[i][j]==-1) return;
             if(gg[i][j]==2){
                 if(free==0) ans++;
@@ -19,10 +19,10 @@ public:
             }
             
             gg[i][j] = 3;
-            solve(i+1,j,free-1);
-            solve(i,j+1,free-1);
-            solve(i-1,j,free-1);
-            solve(i,j-1,free-1);
+            solve(solve,i+1,j,free-1);
+            solve(solve,i,j+1,free-1);
+            solve(solve,i-1,j,free-1);
+            solve(solve,i,j-1,free-1);
             gg[i][j] = 1;
             
         };
@@ -32,7 +32,7 @@ public:
             for(int j=0;j<m;j++)
                 if(gg[i][j]==1){ 
                     // cout<<i<<" "<<j<<"\n";
-                    solve(i,j,free+1); 
+                    solve(solve,i,j,free+1); 
                     return ans;
                 }
         
