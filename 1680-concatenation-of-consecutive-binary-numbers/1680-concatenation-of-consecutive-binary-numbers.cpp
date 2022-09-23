@@ -3,7 +3,7 @@ public:
     int concatenatedBinary(int n) {
         
         long long res = 0;
-        long long const mod = 1e9 + 7;
+        int const mod = 1e9 + 7;
         
         for(int i=1;i<=n;i++){
             int len=0;
