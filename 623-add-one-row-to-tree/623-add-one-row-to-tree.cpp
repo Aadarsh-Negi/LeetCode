@@ -19,25 +19,25 @@ public:
             return new_root;
         }
         
-        auto dfs = [&](auto &&dfs,TreeNode *cur,int lvl,TreeNode *prev,int lf){
-            
-            if(lvl==depth){
-                if(lf){
-                    prev->left = new TreeNode(val);
-                    prev->left->left = cur;
-                }else{
-                    prev->right = new TreeNode(val);
-                    prev->right->right = cur;
-                }
-                return;
-            }
+        auto dfs = [&](auto &&dfs,TreeNode *cur,int lvl){
             if(!cur) return;
-            dfs(dfs,cur->left,lvl+1,cur,1);
-            dfs(dfs,cur->right,lvl+1,cur,0);
+            if(lvl+1==depth){
+                TreeNode *temp = cur->left;
+                cur->left = new TreeNode(val);
+                cur->left->left = temp;
+                
+                temp = cur->right;
+                cur->right = new TreeNode(val);
+                cur->right->right = temp;
+                return;
+                
+            }
+            dfs(dfs,cur->left,lvl+1);
+            dfs(dfs,cur->right,lvl+1);
             
         };
         
-        dfs(dfs,root,1,nullptr,0);
+        dfs(dfs,root,1);
         return root;
     }
 };
