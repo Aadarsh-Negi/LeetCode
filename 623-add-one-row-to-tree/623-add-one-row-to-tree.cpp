@@ -19,7 +19,7 @@ public:
             return new_root;
         }
         
-        auto dfs = [&](auto &&dfs,TreeNode *cur,int lvl){
+        function<void(TreeNode *,int)> dfs = [&](TreeNode *cur,int lvl){
             if(!cur) return;
             if(lvl+1==depth){
                 TreeNode *temp = cur->left;
@@ -32,12 +32,12 @@ public:
                 return;
                 
             }
-            dfs(dfs,cur->left,lvl+1);
-            dfs(dfs,cur->right,lvl+1);
+            dfs(cur->left,lvl+1);
+            dfs(cur->right,lvl+1);
             
         };
         
-        dfs(dfs,root,1);
+        dfs(root,1);
         return root;
     }
 };
