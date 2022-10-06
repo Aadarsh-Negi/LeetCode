@@ -3,7 +3,7 @@ public:
     TimeMap() {
         
     }
-    map<string,set<pair<int,string>>> idx;
+    unordered_map<string,set<pair<int,string>>> idx;
 
     void set(string key, string val, int time) {
         idx[key].insert({time,val});
