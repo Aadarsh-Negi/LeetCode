@@ -20,6 +20,5 @@ public:
             }
         }
         return sum;
-        // code here
     }
 };
