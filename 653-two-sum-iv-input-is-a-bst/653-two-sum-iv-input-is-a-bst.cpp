@@ -13,7 +13,10 @@ int fq[55555];
 int const N = 1e4;
 class Solution {
 public:
-    unordered_map<int,int> fq;
+    Solution(){
+        memset(fq,0,sizeof(fq));
+    }
+    // unordered_map<int,int> fq;
     bool findTarget(TreeNode* root, int k) {
         if(!root) return 0;
         int val = k-root->val + N;
