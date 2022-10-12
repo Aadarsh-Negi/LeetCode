@@ -9,7 +9,7 @@ public:
                 int b = nums[i+1];
                 int c = nums[i+2];
                 
-                if(a+b > c && a+c > b && b+c>a){
+                if(a+b > c){
                     ans=max(ans,a+b+c);
                 }
                 
