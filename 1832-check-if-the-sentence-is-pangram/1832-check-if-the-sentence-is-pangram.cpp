@@ -1,12 +1,12 @@
-int cnt[26];
+bool cnt[26];
 class Solution {
 public:
     bool checkIfPangram(string &c) {
-        memset(cnt,0,sizeof(cnt));
+        memset(cnt,false,sizeof(cnt));
         int ok = 0;
         for(char &s:c){
             if(!cnt[s-'a']) ok++;
-            cnt[s-'a']++;
+            cnt[s-'a'] = true;
         }
         return ok>=26;
         
