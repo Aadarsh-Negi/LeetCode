@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {
-        map<string,int> fq;
+        unordered_map<string,int> fq;
         for(string &s:words) fq[s]++;
         sort(words.begin(),words.end());
         words.erase(unique(words.begin(),words.end()),words.end());
