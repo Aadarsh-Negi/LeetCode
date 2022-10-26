@@ -4,7 +4,7 @@ public:
         for(int &i:ar) i%=k;
         int n = ar.size();
         if(n<2) return 0;
-        map<int,int> seen;
+        unordered_map<int,int> seen;
         seen[0] = 0;
         int ss = 0;
         for(int i=0;i<n;i++){
