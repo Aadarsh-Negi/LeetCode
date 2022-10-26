@@ -9,9 +9,10 @@ public:
         int ss = 0;
         for(int i=0;i<n;i++){
             ss+=ar[i];
-            if(!seen.count(ss%k))
-                    seen[ss%k]=i+1;
-            else if(seen[ss%k]<i) return 1;
+            ss%=k;
+            if(!seen.count(ss))
+                    seen[ss]=i+1;
+            else if(seen[ss]<i) return 1;
         }
         return false;
     }
