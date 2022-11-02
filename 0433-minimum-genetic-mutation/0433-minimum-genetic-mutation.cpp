@@ -1,13 +1,12 @@
 class Solution {
 public:
     int minMutation(string s, string t, vector<string>& bank) {
-        if(find(bank.begin(),bank.end(),t)==bank.end())return-1;
+        // if(find(bank.begin(),bank.end(),t)==bank.end())return-1;
         set<string>cc(bank.begin(),bank.end()); 
         cc.erase(s);
         queue<string>qq;
         qq.push(s);
         int ans=0;
-        
         char ch[]={'A','C','G','T'};
         while(qq.size()){
             int sz=qq.size();
@@ -24,10 +23,8 @@ public:
                             cc.erase(x);
                         }    
                     }
-                    c=p;
-                        
+                    c=p;   
                 }
-                
             }
             ans++;
         }
