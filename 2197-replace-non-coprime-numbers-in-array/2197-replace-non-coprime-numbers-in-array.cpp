@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> replaceNonCoprimes(vector<int>& nums) {
-       vector<int> ans;
+        vector<int> ans;
         
         for(int i:nums){
                 int c = i;
@@ -9,9 +9,7 @@ public:
                     c = lcm(ans.back(),c);
                     ans.pop_back();
                 }
-            
                 ans.push_back(c);                
-            
         }
         return ans;
     }
