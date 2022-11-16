@@ -11,7 +11,7 @@ class Solution {
 public:
     int guessNumber(int n) {
         int l = 1;
-        int r = n;
+        int r =INT_MAX; 
         while(l<=r){
             int mid = l + (r-l)/2;
             int x = guess(mid);
