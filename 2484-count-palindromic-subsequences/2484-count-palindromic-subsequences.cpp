@@ -12,26 +12,26 @@ public:
         ll tx=0;
         if(l==0){
             tx+=solve(i+1,s[i]-'0',se,l+1);
-            tx%=mod;
+            tx = tx>mod ? tx-mod : tx;
         }else if(l==1){
             tx+=solve(i+1,f,s[i]-'0',l+1);
-            tx%=mod;
+            tx = tx>mod ? tx-mod : tx;
         }else if(l==2){
             tx+=solve(i+1,f,se,l+1);
-            tx%=mod;
+            tx = tx>mod ? tx-mod : tx;
         }else if(l==3){
             if(se==(s[i]-'0')){
                 tx+=solve(i+1,f,se,l+1);
-                tx%=mod;    
+                tx = tx>mod ? tx-mod : tx;
             }
         }else{
             if(f==(s[i]-'0')){
                 tx+=solve(i+1,f,se,l+1);
-                tx%=mod;    
+                tx = tx>mod ? tx-mod : tx;
             }
         }
         tx+=solve(i+1,f,se,l);
-        tx%=mod;
+        tx = tx>mod ? tx-mod : tx;
         return dp[i][f][se][l] = tx;
         
     }
