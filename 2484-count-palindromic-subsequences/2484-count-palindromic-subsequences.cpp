@@ -1,5 +1,5 @@
 #define ll long long
-int dp[10005][11][11][6];
+int dp[10005][10][10][5];
 int const mod = 1e9 + 7;
 class Solution {
 public:
