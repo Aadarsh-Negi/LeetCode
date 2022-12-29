@@ -12,14 +12,14 @@ public:
         vector<int> ans;
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> qq;
         int i=0;
-        long long cur = 0;
+        int cur = 0;
         // ans.push_back(idx[0]);
         while(i<n || qq.size()){
             // cout<<cur<<" "<<i<<"< ";
           
             while(i<n && cur>=tasks[idx[i]][0]) qq.push({tasks[idx[i]][1],idx[i]}),i++;
             // cout<<i<<"\n";
-            if(qq.size()) cur+=qq.top().first,ans.push_back(qq.top().second),qq.pop();            
+            if(qq.size()) cur=min((int)1e9,cur+qq.top().first),ans.push_back(qq.top().second),qq.pop();            
             if(i<n && qq.size()==0 && cur<tasks[idx[i]][0]) cur = tasks[idx[i]][0];
         }
         
