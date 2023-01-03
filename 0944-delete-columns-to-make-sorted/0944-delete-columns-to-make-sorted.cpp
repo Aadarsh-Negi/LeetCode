@@ -3,11 +3,14 @@ public:
     int minDeletionSize(vector<string>& strs) {
         int ans=0;
         for(int i=0;i<strs[0].size();i++){
-            string s;
+            int prev = -1;
             for(int j=0;j<strs.size();j++){
-                s+=strs[j][i];
+                if(prev > strs[j][i]){
+                    ans++; break;
+                }
+                prev = strs[j][i];
             }
-            ans+=!is_sorted(s.begin(),s.end());
+            
         }
             
         return ans;
