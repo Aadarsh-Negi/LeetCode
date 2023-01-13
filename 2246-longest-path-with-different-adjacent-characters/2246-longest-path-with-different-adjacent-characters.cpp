@@ -1,12 +1,11 @@
 class Solution {
 public:
     vector<vector<int>> gg;
-    int ans;
-    int solve(int u,string &s){
+    int solve(int u,string &s,int &ans){
         vector<int> sub(2,0);
         
         for(int i:gg[u]){
-            int x = solve(i,s);
+            int x = solve(i,s,ans);
             if(s[u]==s[i])  continue;
             sub.push_back(x);
             sort(sub.rbegin(),sub.rend());
@@ -19,10 +18,10 @@ public:
     int longestPath(vector<int>& par, string s) {
         gg.resize(par.size()+10);
         
-        ans=0;
+        int ans=0;
         for(int i=1;i<par.size();i++) gg[par[i]].push_back(i);
         
-        solve(0,s);
+        solve(0,s,ans);
         return ans;
     }
 };
