@@ -8,8 +8,9 @@ public:
         for(int i:nums){
             s+=i;
             while(s<0) s+=k;
-            ans+=cnt[s%k];
-            cnt[s%k]++;
+            s%=k;
+            ans+=cnt[s];
+            cnt[s]++;
         }
         return ans;
     }
