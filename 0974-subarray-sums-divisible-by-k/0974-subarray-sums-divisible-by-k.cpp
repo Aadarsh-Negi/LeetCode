@@ -1,7 +1,8 @@
+int cnt[10004];
 class Solution {
 public:
-    int subarraysDivByK(vector<int>& nums, int k) {
-        map<int,int> cnt;
+    int subarraysDivByK(vector<int>& nums, const int k) {
+        memset(cnt,0,sizeof(cnt));
         cnt[0]++;
         int ans=0;
         int s=0;
