@@ -7,16 +7,16 @@ public:
         set<vector<int>> seen;
         for(int i=1;i<(1<<nums.size());i++){
             vector<int> temp;
-            
+            bool f = 1;
             for(int j=0;j<nums.size();j++)
                 if((1<<j)&i){
                     if(temp.size()==0 || temp.back() <= nums[j])
                         temp.push_back(nums[j]);          
-                    else break;
+                    else {f=0;break;}
                 }
                     
             
-            if(temp.size()>1 && seen.find(temp)==seen.end()) {
+            if(f && temp.size()>1 && seen.find(temp)==seen.end()) {
                 ans.push_back(temp);
                 seen.insert(temp);
             }
