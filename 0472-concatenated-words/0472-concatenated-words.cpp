@@ -22,16 +22,16 @@ public:
     bool ok(string &s,int ix,int cnt,Trie *cur){
         if(ix>=s.size()) return cnt>1;
         if(dp[ix][cnt]!=-1) return dp[ix][cnt];
+        bool temp = 0;
         for(int i=ix;i<s.size();i++){
             char c = s[i];
             if(cur->ar[c-'a']){
                 cur = cur->ar[c-'a'];
-                if(cur->end){
-                    if(ok(s,i+1,cnt+1,root)) return dp[ix][cnt] = true;
-                }
-            }else return dp[ix][cnt] = false;
+                if(cur->end)
+                    temp |= ok(s,i+1,cnt+1,root);
+            }else break;
         }
-        return dp[ix][cnt] = false;
+        return dp[ix][cnt] = temp;
     }
     
     vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
