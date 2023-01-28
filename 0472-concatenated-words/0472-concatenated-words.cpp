@@ -15,7 +15,7 @@ class Trie{
         root->end++;
     }
 };
-int dp[35][35];
+int dp[32][32];
 class Solution {
 public:
     Trie *root;
