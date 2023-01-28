@@ -15,29 +15,25 @@ public:
         queue<int> qq;
         
         qq.push(0);
-        if(b[0][0] > 0) qq.push(b[0][0]-1);
         int ans=0;
-        map<int,int> done;
+        
         while(qq.size()){
             int sz = qq.size();
             while(sz--){
                 int cur2 = qq.front();
                 qq.pop();
                 
-                if(cur2 == n*n - 1) return ans;
-                if(done[cur2]) continue;
-                done[cur2] = 1;
                 // cout<<cur<<"\n";
+                if(cur2 == n*n - 1) return ans;
                 
                 for(int d=1;d<=6 && cur2+d<n*n;d++){
                     int cur = cur2 + d;
                     int x = cur/n;
                     int y = cur%n;
-                    // if(b[x][y]==-1000) continue;
+                    if(b[x][y]==-1000) continue;
                     if(b[x][y] > 0) qq.push(b[x][y] - 1);
-                    else
-                        qq.push(cur);
-                    // b[x][y] = -1000;
+                    else qq.push(cur);
+                    b[x][y] = -1000;
                 }
 
             }
