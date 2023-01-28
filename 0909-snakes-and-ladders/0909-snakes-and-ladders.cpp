@@ -2,7 +2,6 @@ class Solution {
 public:
     int snakesAndLadders(vector<vector<int>>& b) {
         int n = b.size();
-        if(b[0][0]!=-1) return -1;
         for(int i=0;i<n/2;i++)
             for(int j=0;j<n;j++)
                 swap(b[i][j],b[n-1-i][j]);
