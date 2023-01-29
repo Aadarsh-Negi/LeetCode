@@ -8,13 +8,11 @@ public:
             int c = it[2];
             adj[x].push_back({y,c});
         }
-        k++;
         vector<int> dis(n,INT_MAX);
         queue<int> qq;
         qq.push(src);
         dis[src] = 0;
-
-        while(qq.size() && k){
+        while(qq.size() && k-->=0){
             int sz =  qq.size();
             vector<int> temp(dis);
             while(sz--){
@@ -26,14 +24,7 @@ public:
                     }
                 }
             }
-            // dis = temp;
-            k--;
         }
-        
-        
-        
         return dis[dst]==INT_MAX ? -1 : dis[dst];
-        
-        
     }
 };
