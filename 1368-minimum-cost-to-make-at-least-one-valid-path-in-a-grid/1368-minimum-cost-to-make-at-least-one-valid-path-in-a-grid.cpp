@@ -8,7 +8,6 @@ public:
         queue<pair<int,int>> qq;
         qq.push({0,0});
         vector<vector<int>> dis(n,vector<int>(m,INT_MAX));
-        
         dis[0][0] = 0;
         while(qq.size()){
             int sz = qq.size();
