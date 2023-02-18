@@ -10,28 +10,24 @@ public:
         vector<vector<int>> dis(n,vector<int>(m,INT_MAX));
         
         dis[0][0] = 0;
-        
         while(qq.size()){
             int sz = qq.size();
             while(sz--){
                 int i = qq.front().first;
                 int j = qq.front().second;
                 qq.pop();
-                
                 int c = g[i][j]-1;
-                
                 for(int k=0;k<4;k++){
                     int x = i+dx[k];
                     int y = j+dy[k];
                     if(x<0 || y<0 || x>=n || y>=m) continue;
-                    int p = dis[x][y];
-                    dis[x][y] = min(dis[x][y],dis[i][j] + (c!=k));
-                    if(p!=dis[x][y]) qq.push({x,y});
+                    if(dis[x][y] > dis[i][j] + (c!=k)){
+                        dis[x][y] = dis[i][j] + (c!=k);
+                        qq.push({x,y});
+                    }
                 }
-                
             }
         }
         return dis[n-1][m-1];
-        
     }
 };
