@@ -10,8 +10,8 @@ public:
         vector<vector<int>> distance(n,vector<int>(m,INT_MAX));
         distance[0][0] = 0;
         while(qq.size()){
-            // int sz = qq.size();
-            // while(sz--){
+            int sz = qq.size();
+            while(sz--){
                 int i = qq.front().first;
                 int j = qq.front().second;
                 qq.pop();
@@ -24,7 +24,7 @@ public:
                         distance[x][y] = distance[i][j] + (c!=k);
                         qq.push({x,y});
                     }
-                // }
+                }
             }
         }
         return distance[n-1][m-1];
