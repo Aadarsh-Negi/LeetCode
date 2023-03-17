@@ -17,16 +17,14 @@ public:
         
         for(string &s:w1){
             int temp[26] = {0};
-            bool ok=1;
-            for(char &c:s){
+            bool ok=0;
+            for(char &c:s)
                 temp[c-'a']++;
-            } 
+            for(int i=0;i<26;i++)
+                    ok|=(temp[i]<cnt[i]) ;
             
-            for(int i=0;i<26;i++){
-                    if(temp[i]<cnt[i]) {ok=0; break;}
-            }
             
-            if(ok) ans.push_back(s);
+            if(!ok) ans.push_back(s);
         }
             
             return ans;
