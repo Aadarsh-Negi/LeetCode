@@ -57,7 +57,7 @@ vector<int> path(int a, int b, int n){
 }
     
     pair<int,int> solve(vector<int> &price,int cur = 0,int p=-1){
-        if(dp[cur].first!=-1) return dp[cur];
+        // if(dp[cur].first!=-1) return dp[cur];
         
            int temp = (price[cur]/2)*times[cur];
            int t2 = (price[cur])*times[cur];
