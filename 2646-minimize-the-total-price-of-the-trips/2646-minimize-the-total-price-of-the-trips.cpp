@@ -1,44 +1,56 @@
-int const N = 55;
-vector<int> adj[N];
-int lvl[N];
-int par[N];
-int times[N];
+const int MAX_N = 55;
+const int LOG = 14;
+vector<int> adj[MAX_N];
+int up[MAX_N][LOG]; // up[v][j] is 2^j-th ancestor of v
+int depth[MAX_N];
+int par[MAX_N];
+int times[MAX_N];
+
 class Solution {
 public:
-void dfs(int node, int l,int p){
-   lvl[node] = l;
-   par[node] = p;
-   
-   for(int child : adj[node])
-   {
-      if(child != p)
-        dfs(child, l+1, node);
-   }
+
+
+void dfs(int a,int p) {
+    par[a]=p;
+	for(int b : adj[a]) {
+        if(b!=p){
+            depth[b] = depth[a] + 1;
+            up[b][0] = a; // a is parent of b
+            for(int j = 1; j < LOG; j++) {
+                up[b][j] = up[up[b][j-1]][j-1];
+            }
+            dfs(b,a);    
+        }
+	}
 }
- 
-int LCA(int a, int b){ 
-   
-   if(lvl[a] > lvl[b])
-    swap(a, b);
-   int diff = lvl[b] - lvl[a];
-    
-   while(diff != 0)
-   {
-      b = par[b];
-      diff--;
-   }
-    
-   if(a == b)
-    return a;
-    
-   while(a != b)
-    a=par[a], b=par[b];
- 
-   return a;
+
+int get_lca(int a, int b) { // O(log(N))
+	if(depth[a] < depth[b]) {
+		swap(a, b);
+	}
+	// 1) Get same depth.
+	int k = depth[a] - depth[b];
+	for(int j = LOG - 1; j >= 0; j--) {
+		if(k & (1 << j)) {
+			a = up[a][j]; // parent of a
+		}
+	}
+	// 2) if b was ancestor of a then now a==b
+	if(a == b) {
+		return a;
+	}
+	// 3) move both a and b with powers of two
+	for(int j = LOG - 1; j >= 0; j--) {
+		if(up[a][j] != up[b][j]) {
+			a = up[a][j];
+			b = up[b][j];
+		}
+	}
+	return up[a][0];
 }
  
 vector<int> path(int a, int b){
-    int lca = LCA(a, b);
+    int lca = get_lca(a, b);
     vector<int> path;
     while(a != lca)
       path.push_back(a), a = par[a];
@@ -82,7 +94,7 @@ vector<int> path(int a, int b){
             adj[a].push_back(b);
             adj[b].push_back(a);
         }
-        dfs(1, 0, -1);
+        dfs(0, 0);
         
         for(auto it:trips){
             int a = it[0];
