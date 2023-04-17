@@ -38,7 +38,7 @@ int LCA(int a, int b){
    return a;
 }
  
-vector<int> path(int a, int b, int n){
+vector<int> path(int a, int b){
     int lca = LCA(a, b);
     vector<int> path;
     while(a != lca)
@@ -90,7 +90,7 @@ vector<int> path(int a, int b, int n){
         for(auto it:trips){
             int a = it[0];
             int b = it[1];
-            for(int i:path(a,b,n))
+            for(int i:path(a,b))
                 times[i]++;
         }
         
