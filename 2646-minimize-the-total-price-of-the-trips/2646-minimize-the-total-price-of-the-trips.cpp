@@ -3,7 +3,6 @@ vector<int> adj[N];
 int lvl[N];
 int par[N];
 int times[N];
-pair<int,int> dp[N];
 class Solution {
 public:
 void dfs(int node, int l,int p){
@@ -57,7 +56,6 @@ vector<int> path(int a, int b){
 }
     
     pair<int,int> solve(vector<int> &price,int cur = 0,int p=-1){
-        // if(dp[cur].first!=-1) return dp[cur];
         
            int temp = (price[cur]/2)*times[cur];
            int t2 = (price[cur])*times[cur];
@@ -69,14 +67,13 @@ vector<int> path(int a, int b){
                    t2+=min(x.first,x.second);
                }
            }
-            return dp[cur] = {temp,t2};
+            return {temp,t2};
 
     }
     int minimumTotalPrice(int n, vector<vector<int>>& edges, vector<int>& price, vector<vector<int>>& trips) {
         for(int i=0;i<=n;i++){
             adj[i].clear();
             times[i] = 0;
-            dp[i].first = dp[i].second = -1;
         }
         
         for(auto it:edges){
@@ -94,11 +91,9 @@ vector<int> path(int a, int b){
                 times[i]++;
         }
         
-        // for(int i=0;i<n;i++) cout<<times[i]<<" ";cout<<"\n";
         auto it = solve(price);
         int ans = min({it.first,it.second});
         return ans;
-        // return min(solve(price),solve(price));
                 
         
     }
