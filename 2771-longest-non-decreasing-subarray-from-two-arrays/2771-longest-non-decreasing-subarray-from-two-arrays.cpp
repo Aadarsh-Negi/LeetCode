@@ -1,4 +1,4 @@
-int dp[100055][4];
+int dp[100001][3];
 class Solution {
 public:
     int solve(vector<int> &a,vector<int> &b,int prev,int i = 0){
