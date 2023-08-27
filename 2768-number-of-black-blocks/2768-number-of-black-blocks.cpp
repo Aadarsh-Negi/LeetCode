@@ -1,11 +1,9 @@
-int dx[] = {-1,0,-1,0};
-int dy[] = {-1,0,0,-1};
 class Solution {
 public:
     vector<long long> countBlackBlocks(int n, int m, vector<vector<int>>& c) {
         vector<long long> ans(5,0);
         
-        map<vector<int>,int> cp;
+        map<pair<int,int>,int> cp;
         
         for(vector<int> &a:c){
             int x = a[0];
