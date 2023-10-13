@@ -1,45 +1,22 @@
+int dp[2004];
 class Solution {
 public:
-    
-    bool check(string &s,int i,int j){
-        if(i==j)
-        return true;
-
-        while(i<j){
-            if(s[i++]!=s[j--])
-            return false;
-        }
-       return true;
+    bool ok(const string &s,int i,int j){
+        while(i<j) if(s[i++]!=s[j--]) return 0;
+        return 1;
     }
-
-    int solve(string &s,int i,int j,vector<int> &dp){
-
-        if(i>=j || check(s,i,j))return 0;
-
-        if(dp[i]!=-1)return dp[i];
-
-        int mincut=INT_MAX;
-
-        for(int k=i;k<=j;k++){
-            if(check(s,i,k)){
-                int temp=1+solve(s,k+1,j,dp);
-                mincut=min(mincut,temp);
-            }
+    int solve(const string &s,int i,int j){
+        if(i>=j || ok(s,i,j)) return 0;
+        if(dp[i]!=-1) return dp[i];
+        int temp = INT_MAX/2;
+        for(int k=i;k<j;k++){
+            if(ok(s,i,k))
+                temp = min(temp,1+solve(s,k+1,j));
         }
-
-        return dp[i]=mincut;
+        return dp[i] = temp;
     }
-
-
-    
-
     int minCut(string s) {
-        
-        if(s.size()<2)return 0;
-        if(check(s,0,s.size()-1))return 0;
-
-        vector<int> dp(s.size(),-1);
-
-        return solve(s,0,s.size()-1,dp);
+        memset(dp,-1,sizeof(dp));
+        return solve(s,0,s.size()-1);
     }
 };
