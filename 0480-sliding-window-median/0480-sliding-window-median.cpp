@@ -17,14 +17,11 @@ public:
             ox.insert(i);    
             if(ox.size() == k){
                 if(k&1){
-                    int idx = k/2;
-                    int val = *ox.find_by_order(idx);
+                    int val = *ox.find_by_order(k/2);
                     ans.push_back(val);
                 }else{
-                    int idx = k/2;
-                    double val = *ox.find_by_order(idx);
-                    idx--;
-                    double val2 = *ox.find_by_order(idx);
+                    double val = *ox.find_by_order(k/2);
+                    double val2 = *ox.find_by_order(k/2 - 1);
                     val = (val + val2) / 2.0;
                     ans.push_back(val);
                 }
