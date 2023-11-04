@@ -9,6 +9,5 @@ public:
            }
            currentIndex++;
        }
-    // return nums;
     }
 };
