@@ -1,28 +1,17 @@
 class Solution {
 public:
     int coinChange(vector<int>& coins, int x) {
-        queue<int> curStates;
-        curStates.push(x);
-        int const N = 1e4 + 55;
-        int seen[N] = {0};
-        sort(coins.begin(),coins.end());
-        int change = 0;
-        while(!curStates.empty()){
-            int size = curStates.size();
-            while(size--){
-                int amount = curStates.front();
-                curStates.pop();
-                if(amount == 0) return change;
-                if(seen[amount]) continue;
-                seen[amount] = 1;
-                for(int i:coins){
-                    if(i <= amount){
-                        curStates.push(amount-i);
-                    }else break;
+        int dp[x+2];
+        dp[0] = 0;
+        for(int i=1;i<=x;i++){
+            dp[i] = INT_MAX/2;
+            for(int j:coins){
+                if(i-j >= 0){
+                    dp[i] = min(dp[i],dp[i-j]+1);
                 }
             }
-            change++;
         }
-        return -1;
+        
+        return dp[x] >= INT_MAX/2 ? -1 : dp[x];
     }
 };
