@@ -16,7 +16,7 @@ public:
         bool found = 0;
         for(int j=i;j<ar.size();j++)
             if(ar[j] <= t) found |= solve(ar,t-ar[j],j+1) ;
-        found |= solve(ar,t,i+1);
+        // found |= solve(ar,t,i+1);
         return dp[t] = found;
     }
     bool isSubsetSum(vector<int>arr, int sum){
