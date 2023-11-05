@@ -12,17 +12,22 @@ class Solution{
     //railway station such that no train waits.
     int findPlatform(int ar[], int dep[], int n)
     {
-        int rr[2500] = {0};
+        map<int,int> rr;
         
         for(int i=0;i<n;i++){
             rr[ar[i]]++;
             rr[dep[i]+1]--;
         }
         
-        for(int i=1;i<2499;i++){
-            rr[i]+=rr[i-1];
+        int mx = 0;
+        int cur = 0;
+        for(auto it:rr){
+            cur+=it.second;
+            mx = max(mx,cur);
         }
-        return *max_element(rr,rr+2500);
+        
+        
+        return mx;
         
     	// Your code here
     }
