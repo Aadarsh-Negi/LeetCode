@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestPalindrome(string s) {
         int ans = 0;
-        map<int,int> cnt;
+        unordered_map<int,int> cnt;
         
         for(char &c:s) cnt[c]++;
         
