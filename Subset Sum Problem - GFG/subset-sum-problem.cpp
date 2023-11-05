@@ -6,17 +6,18 @@ using namespace std;
 
 // } Driver Code Ends
 //User function template for C++
-int dp[105][10055];
+int dp[10055];
 class Solution{   
 public:
     bool solve(vector<int> &ar,int t,int i=0){
         if(t == 0) return 1;
         if(i>=ar.size()) return 0;
-        if(dp[i][t] != -1) return dp[i][t];
+        if(dp[t] != -1) return dp[t];
         bool found = 0;
-        if(ar[i] <= t) found |= solve(ar,t-ar[i],i+1) ;
+        for(int j=i;j<ar.size();j++)
+            if(ar[j] <= t) found |= solve(ar,t-ar[j],j+1) ;
         found |= solve(ar,t,i+1);
-        return dp[i][t] = found;
+        return dp[t] = found;
     }
     bool isSubsetSum(vector<int>arr, int sum){
         memset(dp,-1,sizeof(dp));
