@@ -5,7 +5,7 @@ public:
         curStates.push(x);
         int const N = 1e4 + 55;
         int seen[N] = {0};
-        
+        sort(coins.begin(),coins.end());
         int change = 0;
         while(!curStates.empty()){
             int size = curStates.size();
@@ -18,7 +18,7 @@ public:
                 for(int i:coins){
                     if(i <= amount){
                         curStates.push(amount-i);
-                    }
+                    }else break;
                 }
             }
             change++;
