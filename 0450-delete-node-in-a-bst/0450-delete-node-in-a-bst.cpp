@@ -1,36 +1,44 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
     
-    void solve(TreeNode* root,vector<TreeNode*> &data){
-        if(!root)return;
-        solve(root->left,data);
-        data.push_back(root);
-        solve(root->right,data);
+    int findMin(TreeNode* root){
+       if(!root->left)return root->val;
+       return findMin(root->left);
     }
 
     TreeNode* deleteNode(TreeNode* root, int key) {
-        if(!root)return NULL;
 
-        vector<TreeNode*> data;
-        solve(root,data);
-        
-        for(int i=0;i<data.size();i++){
-        if(data[i]->val==key){
-            data.erase(data.begin()+i);
-            break;
-         }
-        }
+      if(!root)return NULL;
 
-        if(data.size()==0)return NULL;
+      if(root->val==key){
+         
+         if(!root->left && root->right) return root->right;
+         if(root->left && !root->right) return root->left;
+         if(!root->left && !root->right) return NULL;
+         
+         root->val=findMin(root->right);
+         root->right=deleteNode(root->right,root->val);
 
-        for(int i=0;i<data.size()-1;i++){
-            data[i]->left=NULL;
-            data[i]->right=data[i+1];
-        }
+         return root;
+      }
+       
+    if(key>root->val)
+    root->right=deleteNode(root->right,key);
+    else
+    root->left=deleteNode(root->left,key);
+      
+     return root;
 
-        data[data.size()-1]->left=NULL;
-        data[data.size()-1]->right=NULL;
-
-        return data[0];
     }
 };
