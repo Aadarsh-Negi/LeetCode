@@ -1,11 +1,9 @@
 class Solution {
 public:
     int maxCoins(vector<int>& piles) {
-        sort(piles.rbegin(),piles.rend());
+        sort(piles.begin(),piles.end());
         int ans = 0;
-        int n = piles.size();
-        n/=3;
-        for(int i=1;i<piles.size()-n;i+=2) ans+=piles[i];
+        for(int i=piles.size()/3;i<piles.size();i+=2) ans+=piles[i];
         return ans;
     }
 };
