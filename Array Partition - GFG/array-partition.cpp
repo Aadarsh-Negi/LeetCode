@@ -17,9 +17,9 @@ class Solution{
         bool can = 0;
         for(int j=i+k-1;j<a.size();j++){
             if(a[j] - a[i] > m) return false;
-            if(solve(a,k,m,j+1)) return true;
+            if(solve(a,k,m,j+1)) return dp[i] = true;
         }
-        return dp[i] = can;
+        return dp[i] = false;
     }
     bool partitionArray(int N, int K, int M, vector<int> &A){
         sort(A.begin(),A.end());
