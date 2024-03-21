@@ -1,13 +1,9 @@
 class Solution {
 public:
     long long countSubstrings(string s, char x) {
-        long long ans = 0;
-        map<int,int> cnt;
-        
-        for(char &c:s){
-            cnt[c]++;
-            if(c == x) ans+=cnt[c];
-        }
+        long long ans = count(s.begin(),s.end(),x);
+        ans*=(ans+1);
+        ans/=2;
         return ans;
     }
 };
