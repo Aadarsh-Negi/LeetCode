@@ -4,10 +4,9 @@ public:
         
         
         int n = x.size() + y.size();
-        int f = (n-1)/2;
-        int s = n/2;
-        f+=1;
-        s+=1;
+        int f = (n-1)/2 + 1;
+        int s = n/2 + 1;
+        
         auto find = [&](int v)->int{
             int l = 0;
             int r = (int)x.size()-1;
@@ -22,6 +21,7 @@ public:
             }  
             return ans; 
         };
+        
         int a = find(f);
         int b = find(s);
         
