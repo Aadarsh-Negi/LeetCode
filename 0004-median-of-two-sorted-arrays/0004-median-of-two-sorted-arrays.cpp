@@ -13,7 +13,22 @@ public:
             int ans = INT_MAX;
             while(l<=r){
                 int mid = l + (r-l)/2;
-                int fx = upper_bound(y.begin(),y.end(),x[mid]) - y.begin(); // > x[mid] 
+                
+                int fx = 0; 
+                int ll = 0;
+                int rr = (int)y.size()-1;
+                
+                while(ll <= rr){
+                    int mid2 = ll + (rr-ll)/2;
+                    
+                    if(y[mid2] <= x[mid]){
+                        ll = mid2+1;
+                        fx = mid2+1;
+                    }else{
+                        rr = mid2-1;
+                    }
+                }
+                
                 if(fx + mid + 1 >= v){
                     ans = x[mid];
                     r = mid-1;
