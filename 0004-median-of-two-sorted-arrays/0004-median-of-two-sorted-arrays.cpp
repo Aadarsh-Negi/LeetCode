@@ -30,9 +30,7 @@ public:
         a = min(a,find(f));
         b = min(b,find(s));
         
-        
-        double res = a+b;
-        res/=2.0;
-        return res;  
+       
+        return (a+b) / 2.0;  
     }
 };
